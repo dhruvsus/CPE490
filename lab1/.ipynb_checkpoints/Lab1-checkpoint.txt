@@ -1,0 +1,76 @@
+Lab 1 -- Neural Net Basics
+Overview
+This initial lab has several goals.
+
+Get familiar with Numpy and Python if you're not already.
+Write a very simple neural network implementation so you understand concretely how an NN works
+Understand a bit of PyPlot so you can analyze the test data intuitively
+Attempt to "train" the NN by hand-tweaking the weights to agree with a training set. (We'll do this automatically using Keras and Tensorflow in the next lab)
+Submit, Kaggle-style, an answer to the supplied test set, so you have a sense of how Kaggle submissions usually work.
+Read up on Numpy
+Read the Bibliography-supplied numpy docs. You don't need to understand the entire thing, but get clear on the main idea -- that numpy allows you to manipulate tensors (aka multidimensional arrays) in very powerful ways, and that it does this via its own ndarray class, which acts like built-in Python lists, but is its own type. The requirement for elegant implementation of the NN, below, is meant to get you looking through the entire numpy library.
+
+Write simple NN Program
+Use Numpy and Python to write a program NNRun.py, which:
+
+1 Takes as a commandline argument the name of a neural network config file of the format shown below. Standard file suffix for this is ".nn", e.g. Lab1.nn 1 Takes as standard input a file of input patterns, one pattern per row, with a pattern dimension matching the input count. Standard suffix for this is ".dat", e.g. test.dat. 1. Uses numpy to build, as a series of matrices (ndarrays), the layers of the specified NN. 1. Runs each input pattern through the NN, using a Heaviside step activation function. 2. Outputs the class number for each input pattern, followed by the pattern itself, matching the format of the training set (see below).
+
+The config file format
+An example config file appears here, with comments on each line. (Comments are not actually allowed in the real file format). Note: this is just an example. Your nn file will look quite different, including having more layers and a different number of output layers
+
+2 2             # Number of inputs and number of layers
+
+4               # Start of layer description -- number of neurons/outputs for layer
+1 -2     3      # Weights for first neuron, plus bias.  Arbitrary whitespace between
+-4 5.3  -6      # Weights for second neuron (all weights may be float values)
+7 -8     9      # Weights for third..
+-10 11  12      # Weights for fourth
+
+3
+1 -2 3 -4        5
+-6 7 -8 9      -10
+11 -12 13 -14   15
+The standard input and output format
+Standard input is zero or more lines of vectors having dimension appropriate for input to the neural network, terminated by EOF. An example for two inputs:
+
+24 25
+56 -68
+9 -66
+Output looks similar, but the first value on each line is the identified class and rest of the line is the input that falls in that class. The format, in other words, is the same as for the training data. You may determine the class by a single output neuron, or a pair of neurons, each one triggering on a different class, with the first nonzero-output neuron indicating the class. Either way, your final output must have just one class value at the start of each line.
+
+0 24 25     # class 0, followed by original input
+1 56 -68
+1 9  -66
+Elegance requirement
+Do not use huge sets of loops to implement this. The point is to use numpy methods, not bang out a bunch of hand-written loops. In particular....
+
+Overall program
+Use Python concisely when you process the NN configuration file. The model implementation has just 26 nonblank lines. Yours may have up to 30 nonblank lines. Consider loop comprehensions in particular. The model implementation uses at least three. And you may find it useful to preprocess the file lines into an list of nonblank, stripped, lines (a three-line loop), and then parse that list, element by element, as the actual input.
+
+Loop to apply the layers
+Your layer-application loop, which runs an input vector through the NN layers, must look like this. Use numpy functions, including an array multiplication. You should understand from class that each NN layer is an affine transformation followed by a nonlinear mapping. Code it that way.
+
+ for layer in layers:
+     # At most two lines, both assignments, not loops nor loop comprehensions
+"Train" your network
+We'll use libraries, and the backpropagation algorithm, to train all the other NN's we build, but just once you should do the process by hand. This includes using pyplot, which will be a useful analysis tool throughout the term.
+
+Examine files train.dat and test.dat. Test.dat is the input file which your network must properly classify. Train.dat has format similar to what you should produce for test.dat, with classes (just two: 0 and 1) given. Create a network that properly classifies test.dat, using the information in train.dat.
+
+Use pyplot to analyze train.dat
+If you can figure out how to train your network by just reading all those numbers, you're superhuman. The rest of us will need to plot them out to see what's going on. Use pyplot to do this. How you do so is up to you, but you're looking for regions on the x/y plane that correspond to the 0 and 1 classes in train.dat. You'll find that class 0 is a triangular and band-shaped combination, and class 1 is the rest of the region. Use what we learned in class regarding three-layer NNs and general convex space recognition to build an NN that identifies those regions as class 0 and 1. A good solution will have 8-9 neurons in three layers.
+
+A helpful hint
+You may find it useful to know that all angles in the lines that bound the regions in train.dat are 30, 45 or 60 degrees, and all distances from the origin are integers. That's a lot more predictability than a real training set would offer!
+
+Run your network
+Once you've got all this done, you should be able to run your network first on train.dat, with the first column removed, to produce a result that matches train.dat. In other words, your trained network should at least work perfectly on train.dat, from which you built it. (Such perfect matching to a training set in more complex cases is impossible and undesirable due to the complexity of the training set, but this exercise is about understanding fundamentals).
+
+After verifying this, you should be able to run your network on test.dat to get a file to submit. Hopefully this will match the hidden answer.dat file we have on file, though slight variations in your dividing lines may give a match on train.dat while still not getting the rignt answer for test.dat. (In practical examples, this is common, and avoiding it is the essential task of machine learning.) Be sure you noted the hint above regarding angles and distances.
+
+Submitting your result
+Submit these files:
+
+Answer.nn Answer.dat PyPlot.py RunNN.py
+
+to turnin directory ~grade-cstaley/DLNN/NNBasics/turnin on the UnixX machines. The PyPlot.py can be any reasonable analysis; I just want to see what you did. You'll get accepted by Bender if the Answer.dat file differs from the model by at most 5% of samples, and you'll pass style if you follow style and meet the elegance requirements.
