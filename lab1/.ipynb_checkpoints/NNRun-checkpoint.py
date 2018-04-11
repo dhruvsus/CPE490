@@ -18,5 +18,7 @@ for layer in n_weight:
     output=np.heaviside(np.transpose(np.matmul(layer,np.transpose(data_input))),0)
     data_input=np.c_[ output, np.ones(data_input.shape[0]) ]
 data_input_copy=data_input_copy[:,0:-1]
-output=np.hstack((output,data_input_copy))
-np.savetxt(sys.stdout, output, fmt="%.1f")
+for answer, original_input in zip(output.astype(int),data_input_copy):
+    np.savetxt(sys.stdout,answer,fmt="%d",newline=" ")
+    np.savetxt(sys.stdout,original_input,fmt="%.1f",newline=" ")
+    print()
