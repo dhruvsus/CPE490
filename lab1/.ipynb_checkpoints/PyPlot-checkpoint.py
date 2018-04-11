@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 import sys
-%matplotlib inline
 def draw_plot(xmin,xmax,ymin,ymax,x,y,color,ax=0,ay=0,xlabel="",ylabel="",title=""):
     plt.scatter(x,y,c=color)
     plt.axis([xmin,xmax,ymin,ymax])
