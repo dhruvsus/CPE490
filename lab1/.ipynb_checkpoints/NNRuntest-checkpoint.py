@@ -2,7 +2,7 @@ import numpy as np
 import sys
 np.set_printoptions(threshold=np.nan)
 nmat, nwt, values, datinput, output, input, data = [
-], [], [], [], [], sys.argv[1], input()
+], [], [], [], [], 'Answer.nn', 'untrain.dat'
 for l in open(input):
     if(l.strip()):
         values.extend(list(map(float, list(
@@ -25,5 +25,5 @@ for layer in nwt:
     datinput = np.c_[output, np.ones(datinput.shape[0])]
 for answer, original_input in zip(output.astype(int), datinput_copy):
     np.savetxt(sys.stdout, answer, fmt="%d", newline=" ")
-    np.savetxt(sys.stdout, original_input, fmt="%.1f", newline=" ")
+    np.savetxt(sys.stdout, original_input, fmt="%.1f",newline=" ")
     print()
