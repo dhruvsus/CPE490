@@ -1,16 +1,17 @@
 import numpy as np
 import sys
+import fileinput
 np.set_printoptions(threshold=np.nan)
-nmat, nwt, values, datinput, output, input, data = [
-], [], [], [], [], sys.argv[1], input()
+nmat, nwt, values, datinput, output, input = [
+], [], [], [], [], sys.argv[1]
+for l in sys.stdin.readlines():
+    if(l.strip()):
+        datinput.append(list(map(float, list(
+            filter(lambda x: x != '', (l.lstrip().rstrip().split(sep=' ')))))) + [1])
 for l in open(input):
     if(l.strip()):
         values.extend(list(map(float, list(
             filter(lambda x: x != '', (l.lstrip().rstrip().split(sep=' ')))))))
-for l in open(data):
-    if(l.strip()):
-        datinput.append(list(map(float, list(
-            filter(lambda x: x != '', (l.lstrip().rstrip().split(sep=' ')))))) + [1])
 ninputs, nlayers, datinput, datinput_copy= int(values.pop(0)), int(
     values.pop(0)), np.vstack(list(map(np.asarray, datinput))), np.copy(datinput)[:, 0:-1]
 for i in range(int(nlayers)):
