@@ -1,6 +1,5 @@
 import numpy as np
 import sys
-import fileinput
 np.set_printoptions(threshold=np.nan)
 nmat, nwt, values, datinput, output, input = [
 ], [], [], [], [], sys.argv[1]
@@ -24,7 +23,5 @@ for layer in nwt:
     output = np.heaviside(np.transpose(
         np.matmul(layer, np.transpose(datinput))), 0)
     datinput = np.c_[output, np.ones(datinput.shape[0])]
-for answer, original_input in zip(output.astype(int), datinput_copy):
-    np.savetxt(sys.stdout, answer, fmt="%d", newline=" ")
-    np.savetxt(sys.stdout, original_input, fmt="%.1f", newline=" ")
-    print()
+output=np.hstack((output.astype(int), datinput_copy))
+np.savetxt(sys.stdout,output,fmt="%d "+("%0.1f ")*datinput_copy.shape[1])
