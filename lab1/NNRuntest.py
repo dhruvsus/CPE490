@@ -10,9 +10,10 @@ for l in open(input):
 for l in open(data):
     if(l.strip()):
         datinput.append(list(map(float, list(
-            filter(lambda x: x != '', (l.lstrip().rstrip().split(sep=' ')))))) + [1])
-ninputs, nlayers, datinput, datinput_copy= int(values.pop(0)), int(
-    values.pop(0)), np.vstack(list(map(np.asarray, datinput))), np.copy(datinput)[:, 0:-1]
+            filter(lambda x: x != '', (l.lstrip().rstrip()
+                                       .split(sep=' ')))))) + [1])
+ninputs, nlayers, datinput, datinput_copy = int(values.pop(0)), int(values.pop(
+    0)), np.vstack(list(map(np.asarray, datinput))), np.copy(datinput)[:, 0:-1]
 for i in range(int(nlayers)):
     nneurons = int(values.pop(0))
     for i in range(nneurons):
@@ -25,5 +26,6 @@ for layer in nwt:
     datinput = np.c_[output, np.ones(datinput.shape[0])]
 for answer, original_input in zip(output.astype(int), datinput_copy):
     np.savetxt(sys.stdout, answer, fmt="%d", newline=" ")
-    np.savetxt(sys.stdout, original_input, fmt="%.1f",newline=" ")
+    np.savetxt(sys.stdout, original_input, fmt="%.1f", newline=" ")
     print()
+    

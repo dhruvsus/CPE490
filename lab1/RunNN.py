@@ -26,3 +26,4 @@ for layer in nwt:
     datinput = np.c_[output, np.ones(datinput.shape[0])]
 output = np.hstack((output.astype(int), datinput_copy))
 np.savetxt(sys.stdout, output, fmt="%d " + ("%0.1f ") * datinput_copy.shape[1])
+
