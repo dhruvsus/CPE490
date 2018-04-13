@@ -1,9 +1,11 @@
+#!python3 RunNN.py Answer.nn < untrain.dat > Answer_train.dat
+#!diff -bw Answer_train.dat train.dat
+import os
 import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 import math
-import sys
-%matplotlib inline
+#%matplotlib inline
 def draw_plot(xmin,xmax,ymin,ymax,x,y,color,ax=0,ay=0,xlabel="",ylabel="",title=""):
     plt.scatter(x,y,c=color)
     plt.axis([xmin,xmax,ymin,ymax])
@@ -18,7 +20,7 @@ for line in open(data):
     if(line.strip()):data_input.append(list(map(float,list(filter(lambda x: x!='',(line.lstrip().rstrip().split(sep=' ')))))))
 a=np.array(data_input)
 #a=np.sort(data_input,axis=0)
-data,data_input='Answer.dat',[]
+data,data_input='Answer_train.dat',[]
 for line in open(data):
     if(line.strip()):data_input.append(list(map(float,list(filter(lambda x: x!='',(line.lstrip().rstrip().split(sep=' ')))))))
 b=np.array(data_input)
