@@ -1,0 +1,100 @@
+[I 14:30:25.145 NotebookApp] Serving notebooks from local directory: /home/dsingal/CPE490/lab2
+[I 14:30:25.145 NotebookApp] 0 active kernels
+[I 14:30:25.145 NotebookApp] The Jupyter Notebook is running at:
+[I 14:30:25.145 NotebookApp] http://localhost:8889/
+[I 14:30:25.145 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[I 14:31:25.146 NotebookApp] 302 GET / (::1) 1.32ms
+[I 14:31:25.157 NotebookApp] 302 GET /tree? (::1) 2.01ms
+[I 14:31:31.967 NotebookApp] 302 POST /login?next=%2Ftree%3F (::1) 2.08ms
+[W 14:32:16.997 NotebookApp] Notebook Massage.ipynb is not trusted
+[I 14:32:17.318 NotebookApp] Kernel started: fca86f5b-8f59-4583-be04-ca667bb4a5cd
+[I 14:32:17.983 NotebookApp] Adapting to protocol v5.1 for kernel fca86f5b-8f59-4583-be04-ca667bb4a5cd
+[I 14:32:18.627 NotebookApp] Saving file at /Massage.ipynb
+[I 14:33:17.057 NotebookApp] Saving file at /Massage.ipynb
+[I 14:34:07.179 NotebookApp] Starting buffering for fca86f5b-8f59-4583-be04-ca667bb4a5cd:540c0ad5b4a44e04a69edc803badf18b
+[I 14:34:07.495 NotebookApp] Kernel restarted: fca86f5b-8f59-4583-be04-ca667bb4a5cd
+[I 14:34:08.151 NotebookApp] Adapting to protocol v5.1 for kernel fca86f5b-8f59-4583-be04-ca667bb4a5cd
+[I 14:34:08.152 NotebookApp] Restoring connection for fca86f5b-8f59-4583-be04-ca667bb4a5cd:540c0ad5b4a44e04a69edc803badf18b
+[I 14:34:08.152 NotebookApp] Replaying 6 buffered messages
+[I 14:34:17.584 NotebookApp] Saving file at /Massage.ipynb
+[I 14:36:17.294 NotebookApp] Saving file at /Massage.ipynb
+[I 14:38:17.583 NotebookApp] Saving file at /Massage.ipynb
+[I 14:40:17.582 NotebookApp] Saving file at /Massage.ipynb
+[I 14:42:17.585 NotebookApp] Saving file at /Massage.ipynb
+[I 14:44:17.295 NotebookApp] Saving file at /Massage.ipynb
+[I 14:46:17.588 NotebookApp] Saving file at /Massage.ipynb
+[I 14:48:17.299 NotebookApp] Saving file at /Massage.ipynb
+[I 14:50:17.297 NotebookApp] Saving file at /Massage.ipynb
+[I 14:52:17.591 NotebookApp] Saving file at /Massage.ipynb
+[I 14:54:17.299 NotebookApp] Saving file at /Massage.ipynb
+[I 14:56:17.302 NotebookApp] Saving file at /Massage.ipynb
+[I 15:08:17.305 NotebookApp] Saving file at /Massage.ipynb
+[I 15:10:17.296 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:12:17.296 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:14:17.300 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:16:17.299 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:18:17.299 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:20:17.299 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:22:17.301 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:24:17.300 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:26:17.302 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:28:17.298 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:30:17.596 NotebookApp] Saving file at /Titanic.ipynb
+[I 15:40:17.328 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:08:17.322 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:10:17.373 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:12:17.309 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:14:17.304 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:16:17.304 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:18:03.434 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:26:17.316 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:28:17.306 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:30:17.306 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:32:17.329 NotebookApp] Saving file at /Titanic.ipynb
+[I 16:52:17.319 NotebookApp] Saving file at /Titanic.ipynb
+[I 17:06:17.309 NotebookApp] Saving file at /Titanic.ipynb
+[I 17:08:17.345 NotebookApp] Saving file at /Titanic.ipynb
+[W 17:39:38.153 NotebookApp] WebSocket ping timeout after 119996 ms.
+[I 17:39:43.169 NotebookApp] Starting buffering for fca86f5b-8f59-4583-be04-ca667bb4a5cd:540c0ad5b4a44e04a69edc803badf18b
+[I 19:02:29.952 NotebookApp] Adapting to protocol v5.1 for kernel fca86f5b-8f59-4583-be04-ca667bb4a5cd
+[I 19:02:29.964 NotebookApp] Restoring connection for fca86f5b-8f59-4583-be04-ca667bb4a5cd:540c0ad5b4a44e04a69edc803badf18b
+[I 19:02:34.237 NotebookApp] Starting buffering for fca86f5b-8f59-4583-be04-ca667bb4a5cd:540c0ad5b4a44e04a69edc803badf18b
+[W 19:02:34.797 NotebookApp] Notebook Titanic.ipynb is not trusted
+[I 19:02:35.099 NotebookApp] Adapting to protocol v5.1 for kernel fca86f5b-8f59-4583-be04-ca667bb4a5cd
+[I 19:04:35.908 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:11:24.999 NotebookApp] 302 GET / (::1) 0.91ms
+[I 19:25:38.078 NotebookApp] Starting buffering for fca86f5b-8f59-4583-be04-ca667bb4a5cd:a0cadb70dbf24fabb71d404c130494f0
+[I 19:25:38.505 NotebookApp] Kernel restarted: fca86f5b-8f59-4583-be04-ca667bb4a5cd
+[I 19:25:39.186 NotebookApp] Adapting to protocol v5.1 for kernel fca86f5b-8f59-4583-be04-ca667bb4a5cd
+[I 19:25:39.187 NotebookApp] Restoring connection for fca86f5b-8f59-4583-be04-ca667bb4a5cd:a0cadb70dbf24fabb71d404c130494f0
+[I 19:25:39.187 NotebookApp] Replaying 6 buffered messages
+[I 19:26:35.868 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:30:35.050 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:40:35.048 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:42:35.055 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:44:35.047 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:46:35.060 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:48:35.048 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:50:35.869 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:52:35.052 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:54:35.049 NotebookApp] Saving file at /Titanic.ipynb
+[I 19:56:35.871 NotebookApp] Saving file at /Titanic.ipynb
+[I 20:05:10.319 NotebookApp] Saving file at /Titanic.ipynb
+[I 20:06:38.265 NotebookApp] Starting buffering for fca86f5b-8f59-4583-be04-ca667bb4a5cd:a0cadb70dbf24fabb71d404c130494f0
+[W 20:06:40.471 NotebookApp] Notebook Titanic.ipynb is not trusted
+[I 20:06:40.929 NotebookApp] Adapting to protocol v5.1 for kernel fca86f5b-8f59-4583-be04-ca667bb4a5cd
+[I 20:08:40.879 NotebookApp] Saving file at /Titanic.ipynb
+[I 20:10:40.881 NotebookApp] Saving file at /Titanic.ipynb
+[I 20:12:40.884 NotebookApp] Saving file at /Titanic.ipynb
+[I 20:14:40.887 NotebookApp] Saving file at /Titanic.ipynb
+[I 20:20:40.893 NotebookApp] Saving file at /Titanic.ipynb
+[I 20:22:40.881 NotebookApp] Saving file at /Titanic.ipynb
+[I 20:24:40.885 NotebookApp] Saving file at /Titanic.ipynb
+[I 20:26:40.884 NotebookApp] Saving file at /Titanic.ipynb
+[I 21:04:57.152 NotebookApp] Saving file at /Titanic.ipynb
+[W 21:06:40.933 NotebookApp] WebSocket ping timeout after 119996 ms.
+[I 21:06:45.936 NotebookApp] Starting buffering for fca86f5b-8f59-4583-be04-ca667bb4a5cd:923195dc7055495a9ecb45966bdb50ed
+[I 19:04:59.505 NotebookApp] KernelRestarter: restarting kernel (1/5), keep random ports
+[C 19:05:10.691 NotebookApp] received signal 15, stopping
+[I 19:05:10.694 NotebookApp] Shutting down 1 kernel
+[I 19:05:10.995 NotebookApp] Kernel shutdown: fca86f5b-8f59-4583-be04-ca667bb4a5cd
