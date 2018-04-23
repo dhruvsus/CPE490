@@ -1,0 +1,10 @@
+I started with a network structure of 2 layers with 16 neurons and a dropout
+coefficient of 0.2(based on the examples). My loss was binary crossentropy.
+I realized that I didn't have enough data to have dropout layers. Instead,
+I increased the pattern space by having 4 layers, with neuron counts as:
+128, 64, 32, 16, 1. All the layers had the relu acitvation function,
+except the last one, which utilized sigmoid. Starting first with rmsprop,
+I quickly changed to AdamsOptimizer, since I've had good experiences with it.
+Lastly, I struggled with the number of batch sizes vs the number of epochs.
+I observed that reducing batch size improved my mse more than increasing
+epochs past 10, although this was largely due to overfitting.

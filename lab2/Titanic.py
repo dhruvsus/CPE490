@@ -4,6 +4,8 @@ import sys
 from keras import models, layers
 from matplotlib import pyplot as plt
 np.set_printoptions(threshold=np.nan)
+
+
 class PeopleSet:
     def __init__(self):
         self.ids = None
@@ -28,6 +30,7 @@ class PeopleSet:
             input_properties[:, 6])
         np.putmask(input_properties, input_properties == '', 0)
         return input_properties.astype(float)
+
     @staticmethod
     def Normalize_samples(toNormalize):
         return (toNormalize - np.mean(toNormalize, axis=0)) / np.std(
@@ -47,7 +50,8 @@ class PeopleSet:
         self.input_properties = np.hstack(
             inter_csv_list[1:, inputProperties]).T
         self.input_properties = self.fixInput(self.input_properties)
-        self.input_properties = PeopleSet.Normalize_samples(self.input_properties)
+        self.input_properties = PeopleSet.Normalize_samples(
+            self.input_properties)
 
 
 with open(sys.argv[1]) as csvfile:
@@ -55,12 +59,11 @@ with open(sys.argv[1]) as csvfile:
     train = PeopleSet()
     train.populate(iterCSV)
 
-iterCSV=csv.reader(sys.stdin.readlines())
-test=PeopleSet()
+iterCSV = csv.reader(sys.stdin.readlines())
+test = PeopleSet()
 test.populate(iterCSV)
 model = models.Sequential()
-model.add(layers.Dense(
-    128, activation='relu', input_shape=(7, )))
+model.add(layers.Dense(128, activation='relu', input_shape=(7, )))
 model.add(layers.Dense(64, activation='relu'))
 model.add(layers.Dense(32, activation='relu'))
 model.add(layers.Dense(16, activation='relu'))
@@ -68,10 +71,7 @@ model.add(layers.Dense(1, activation='sigmoid'))
 model.compile(
     loss='binary_crossentropy',
     optimizer='Adam',
-    metrics=['mean_squared_error']
-    )
-
-
+    metrics=['mean_squared_error'])
 """def fold_test(train_data, train_targets, num_folds, num_epochs):
     num_samples = train_data.shape[0]
     val_size = num_samples // num_folds
@@ -127,11 +127,20 @@ np.savetxt(sys.stdout, mse_per_fold)
 averageMSE = np.sum(mse_per_fold[:, 9]) / 4
 print(averageMSE)
 """
-#indices = np.random.permutation(train.labels.shape[0])
-train_data, train_labels= train.input_properties, train.labels 
-test_data=test.input_properties
-model.fit(train_data,train_labels,epochs=20,batch_size=32, shuffle=True,verbose=0)
-test.labels=model.predict(test_data)
-test.labels[test.labels<0.5]=0
-test.labels[test.labels>=0.5]=1
-np.savetxt(sys.stdout,np.hstack((test.ids.astype(int),test.labels.astype(int))),fmt="%d,%d")
+
+train_data, train_labels = train.input_properties, train.labels
+test_data = test.input_properties
+model.fit(
+    train_data,
+    train_labels,
+    epochs=20,
+    batch_size=32,
+    shuffle=True,
+    verbose=0)
+test.labels = model.predict(test_data)
+test.labels[test.labels < 0.5] = 0
+test.labels[test.labels >= 0.5] = 1
+np.savetxt(
+    sys.stdout,
+    np.hstack((test.ids.astype(int), test.labels.astype(int))),
+    fmt="%d,%d")
