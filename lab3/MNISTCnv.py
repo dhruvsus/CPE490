@@ -2,6 +2,7 @@ from keras import models, layers
 from matplotlib import pyplot as plt
 from keras.datasets import mnist
 from keras.utils import to_categorical
+from keras.preprocessing.image import ImageDataGenerator
 from sys import exit
 
 nn = models.Sequential()
@@ -29,21 +30,23 @@ train_data = train_data.reshape((60000, 28, 28, 1))
 test_data = test_data.reshape((10000, 28, 28, 1))
 
 # Revise pixel data to 0.0 to 1.0, 32-bit float (this isn't quantum science)
-train_data = train_data.astype('float32') / 255  # ndarray/scalar op
-test_data = test_data.astype('float32') / 255
+x_train = train_data.astype('float32') / 255  # ndarray/scalar op
+x_test = test_data.astype('float32') / 255
 
 # Turn 1-value labels to 10-value vectors
-train_labels = to_categorical(train_labels)
-test_labels = to_categorical(test_labels)
+y_train = to_categorical(train_labels)
+y_test = to_categorical(test_labels)
 
-hst = nn.fit(train_data, train_labels, epochs = 4, batch_size = 64,
- validation_data = (test_data, test_labels))
-
-hst = hst.history
-x_axis = range(len(hst['acc']))
-
-plt.plot(x_axis, hst['acc'], 'bo')
-plt.plot(x_axis, hst['val_acc'], 'ro')
-plt.show()
+#Data augmentation
+datagen=ImageDataGenerator(rotation_range=8, width_shift_range=0.08, shear_range=0.3,height_shift_range=0.08, zoom_range=0.08)
+test_gen = ImageDataGenerator()
+datagen.fit(x_train)
+nn.fit_generator(datagen.flow(x_train, y_train,  batch_size=32), steps_per_epoch=len(x_train)/32, epochs=5)
+#hst = hst.history
+#x_axis = range(len(hst['acc']))
+#
+#plt.plot(x_axis, hst['acc'], 'bo')
+#plt.plot(x_axis, hst['val_acc'], 'ro')
+#plt.show()
 
 nn.save('MNIST.model')
