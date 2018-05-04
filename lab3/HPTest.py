@@ -39,7 +39,7 @@ def make_a_nn(nn_description):
     print(*nn_list,sep='\n')
     first_layer=nn_description.pop(0)
     print(first_layer)
-    #nn.add(layers.Conv2D(, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+    nn.add(layers.Conv2D(first_layer.num_channels_or_neurons, (3, 3), activation=first_layer.activation_function, input_shape=(28, 28, 1)))
 def main():
     #read lines of stdin into list
     stdin_list=sys.stdin.readlines()
