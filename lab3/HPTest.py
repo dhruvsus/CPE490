@@ -32,16 +32,20 @@ def lyr_list_to_nn(lyr_params_list):
     for layer in lyr_params_list:
         if(layer.layer_type=='c'):
             nn.add(layers.Conv2D(layer.num_channels_or_neurons,(3,3),activation=layer.activation_function))
-def make_a_nn(num_layers,nn_description):
+def make_a_nn(nn_description):
     nn_list=[str_to_lyr(layer_description.split()) for layer_description in nn_description]
+    #terrible assumption that the first layer is a conv2d with 28,28,1 input shape
+    nn = models.Sequential()
     print(*nn_list,sep='\n')
-    print()
+    first_layer=nn_description.pop(0)
+    print(first_layer)
+    #nn.add(layers.Conv2D(, (3, 3), activation='relu', input_shape=(28, 28, 1)))
 def main():
     #read lines of stdin into list
     stdin_list=sys.stdin.readlines()
     while len(stdin_list)!=0:
         num_layers=int(stdin_list.pop(0))
-        make_a_nn(num_layers,stdin_list[:num_layers])
+        make_a_nn(stdin_list[:num_layers])
         stdin_list=stdin_list[num_layers:]
 if __name__ == '__main__':
     main()
