@@ -21,7 +21,6 @@ class LyrParams:
         return layer_type+str(self.num_channels_or_neurons)+num_channels_or_neurons_string+str(self.dropout_rate)+" reg "+self.regularization
 def str_to_lyr(lyr_params_split):
     layer=LyrParams()
-    param=0
     layer.layer_type=lyr_params_split[0]
     layer.num_channels_or_neurons=int(lyr_params_split[1])
     layer.activation_function=lyr_params_split[2]
@@ -33,9 +32,16 @@ def lyr_list_to_nn(lyr_params_list):
     for layer in lyr_params_list:
         if(layer.layer_type=='c'):
             nn.add(layers.Conv2D(layer.num_channels_or_neurons,(3,3),activation=layer.activation_function))
+def make_a_nn(num_layers,nn_description):
+    nn_list=[str_to_lyr(layer_description.split()) for layer_description in nn_description]
+    print(*nn_list,sep='\n')
+    print()
 def main():
-    lyr_params_list=[str_to_lyr(layer_description.split()) for layer_description in sys.stdin.readlines()]
-    for layer in lyr_params_list:
-        print(layer)
+    #read lines of stdin into list
+    stdin_list=sys.stdin.readlines()
+    while len(stdin_list)!=0:
+        num_layers=int(stdin_list.pop(0))
+        make_a_nn(num_layers,stdin_list[:num_layers])
+        stdin_list=stdin_list[num_layers:]
 if __name__ == '__main__':
     main()
