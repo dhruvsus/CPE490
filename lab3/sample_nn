@@ -1,0 +1,5 @@
+c 32 relu 0.0 n p
+c 64 relu 0.0 n p
+c 64 relu 0.0 n f
+d 64 relu 0.0 n n
+d 10 softmax 0.0 n n

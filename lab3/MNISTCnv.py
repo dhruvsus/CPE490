@@ -13,7 +13,7 @@ nn.add(layers.MaxPooling2D((2, 2)))                  # Output shape (:, 5, 5, 64
 nn.add(layers.Conv2D(64, (3, 3), activation='relu')) # Output shape (:, 3, 3, 64)
 nn.add(layers.Flatten())                             # Output shape (:, 576)
 nn.add(layers.Dense(64, activation='relu'))          # Output shape (:, 64)
-nn.add(layers.Dense(10, activation='softmax')) 
+nn.add(layers.Dense(10, activation='softmax'))
 
 # Process it all, configure parameters, and get ready to train
 nn.compile(
