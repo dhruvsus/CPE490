@@ -41,7 +41,8 @@ y_test = to_categorical(test_labels)
 datagen=ImageDataGenerator(rotation_range=8, width_shift_range=0.08, shear_range=0.3,height_shift_range=0.08, zoom_range=0.08)
 test_gen = ImageDataGenerator()
 datagen.fit(x_train)
-nn.fit_generator(datagen.flow(x_train, y_train,  batch_size=32), steps_per_epoch=len(x_train)/32, epochs=5)
+nn.summary()
+#nn.fit_generator(datagen.flow(x_train, y_train,  batch_size=32), steps_per_epoch=len(x_train)/32, epochs=1)
 #hst = hst.history
 #x_axis = range(len(hst['acc']))
 #
