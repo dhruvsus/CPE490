@@ -17,19 +17,25 @@ X_test = X_test.reshape(X_test.shape[0], 28, 28, 1)
 X_train = X_train.astype('float32')
 X_test = X_test.astype('float32')
 
-X_train/=255
-X_test/=255
+X_train /= 255
+X_test /= 255
 
 number_of_classes = 10
 
 Y_train = to_categorical(y_train, number_of_classes)
 Y_test = to_categorical(y_test, number_of_classes)
-gen = ImageDataGenerator(rotation_range=8, width_shift_range=0.08, shear_range=0.3,
-                         height_shift_range=0.08, zoom_range=0.08)
+gen = ImageDataGenerator(
+    rotation_range=8,
+    width_shift_range=0.08,
+    shear_range=0.3,
+    height_shift_range=0.08,
+    zoom_range=0.08)
 
 test_gen = ImageDataGenerator()
 train_generator = gen.flow(X_train, Y_train, batch_size=64)
 test_generator = test_gen.flow(X_test, Y_test, batch_size=64)
+
+
 class LyrParams:
     def __init__(self):
         self.layer_type = ''
@@ -63,7 +69,7 @@ def str_to_lyr(lyr_params_split):
 def fix_nn_description(nn_list):
     for layer in nn_list:
         layer.layer_type = 'Conv2D' if layer.layer_type == 'c' else 'Dense'
-        regularization_str=layer.regularization
+        regularization_str = layer.regularization
         if 'l1' in regularization_str:
             layer.regularization = regularizers.l1()
         if 'l2' in regularization_str:
@@ -80,7 +86,7 @@ def make_a_nn(nn_description):
         for layer_description in nn_description
     ]
     nn_list = fix_nn_description(nn_list)
-    print(*nn_list,sep='\n')
+    print(*nn_list, sep='\n')
     #terrible assumption that the first layer is a conv2d with 28,28,1 input shape
     nn = models.Sequential()
     first_layer = nn_list.pop(0)
@@ -107,8 +113,11 @@ def make_a_nn(nn_description):
                     activation=layer.activation_function,
                     kernel_regularizer=layer.regularization))
         if (layer.layer_type == 'Dense'):
-            nn.add(layers.Dense(layer.num_channels_or_neurons,activation=layer.activation_function,
-            kernel_regularizer=layer.regularization))
+            nn.add(
+                layers.Dense(
+                    layer.num_channels_or_neurons,
+                    activation=layer.activation_function,
+                    kernel_regularizer=layer.regularization))
         if 'd' in layer.non_train_layer:
             nn.add(layers.Dropout(rate=layer.dropout_rate))
         if 'p' in layer.non_train_layer:
@@ -124,23 +133,34 @@ def make_a_nn(nn_description):
         metrics=['accuracy']  # Report CCE value as we train
     )
     return nn
-def test_nn(nn,epochs):
-    hst=nn.fit_generator(train_generator, steps_per_epoch=60000//64, epochs=epochs,
-                    validation_data=test_generator, validation_steps=10000//64,verbose=0)
-    score = nn.evaluate(X_test, Y_test,verbose=0)
+
+
+def test_nn(nn, epochs):
+    hst = nn.fit_generator(
+        train_generator,
+        steps_per_epoch=60000 // 64,
+        epochs=epochs,
+        validation_data=test_generator,
+        validation_steps=10000 // 64,
+        verbose=0)
+    score = nn.evaluate(X_test, Y_test, verbose=0)
     print(score)
-    hst=hst.history
+    hst = hst.history
     for i in range(epochs):
-        print(str(hst['val_acc'][i]) + ' / ' + str(hst['val_loss'][i]) + '  '+str(hst['acc'][i])+' / '+str(hst['loss'][i]))
+        print(
+            str(hst['val_acc'][i]) + ' / ' + str(hst['val_loss'][i]) + '  ' +
+            str(hst['acc'][i]) + ' / ' + str(hst['loss'][i]))
     print()
+
+
 def main():
     #read lines of stdin into list
     stdin_list = sys.stdin.readlines()
     while len(stdin_list) != 0:
         num_layers = int(stdin_list.pop(0))
-        nn=make_a_nn(stdin_list[:num_layers])
+        nn = make_a_nn(stdin_list[:num_layers])
         #nn.summary()
-        test_nn(nn,2)
+        test_nn(nn, 5)
         stdin_list = stdin_list[num_layers:]
 
 
