@@ -1,0 +1,26 @@
+[I 12:15:33.088 NotebookApp] Writing notebook server cookie secret to /run/user/2965379/jupyter/notebook_cookie_secret
+[I 12:15:33.861 NotebookApp] Serving notebooks from local directory: /home/dsingal/CPE490/lab4
+[I 12:15:33.862 NotebookApp] 0 active kernels
+[I 12:15:33.862 NotebookApp] The Jupyter Notebook is running at:
+[I 12:15:33.862 NotebookApp] http://localhost:8889/
+[I 12:15:33.862 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[I 12:16:43.051 NotebookApp] 302 GET / (::1) 1.15ms
+[I 12:16:43.068 NotebookApp] 302 GET /tree? (::1) 1.67ms
+[I 12:16:50.533 NotebookApp] 302 POST /login?next=%2Ftree%3F (::1) 2.29ms
+[I 12:17:08.504 NotebookApp] Creating new notebook in 
+[I 12:17:10.192 NotebookApp] Kernel started: aa67c8e7-4a6e-4778-a000-b15a243faf5f
+[I 12:17:10.924 NotebookApp] Adapting to protocol v5.1 for kernel aa67c8e7-4a6e-4778-a000-b15a243faf5f
+[I 12:19:10.164 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:21:10.165 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:23:11.106 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:31:11.107 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:33:10.162 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:35:11.115 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:37:11.158 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:39:11.104 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:41:10.200 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:43:10.216 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:45:11.140 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:47:01.093 NotebookApp] Saving file at /PrepareData.ipynb
+[I 12:47:45.910 NotebookApp] Starting buffering for aa67c8e7-4a6e-4778-a000-b15a243faf5f:a56b21854395411a87c0d8a4e4b0d155
+[IPKernelApp] WARNING | Parent appears to have exited, shutting down.

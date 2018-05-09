@@ -37,5 +37,5 @@ model.compile(
 model.load_weights('MNIST.h5')
 MNIST_prediction = np.asarray(model.predict_classes(X_test))
 print(*MNIST_prediction, sep='\n')
-#score = model.evaluate(X_test, Y_test)
-#print(score)
+# score = model.evaluate(X_test, Y_test)
+# print(score)
