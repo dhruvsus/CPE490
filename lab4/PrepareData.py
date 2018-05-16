@@ -65,27 +65,45 @@ with open(Stoker) as Stoker_open:
             del (Stoker_read[line_number])
     # print(len(Stoker_read))
     # print(*Stoker_read,sep='\n')
-samples=Austen_read+Stoker_read
+samples = Austen_read + Stoker_read
 # print(samples)
-tokenizer=Tokenizer(num_words=12000)
+tokenizer = Tokenizer(num_words=12000)
 tokenizer.fit_on_texts(samples)
-Austen_sequences=np.asarray(tokenizer.texts_to_sequences(Austen_read))
-Stoker_sequences=np.asarray(tokenizer.texts_to_sequences(Stoker_read))
+Austen_sequences = np.asarray(tokenizer.texts_to_sequences(Austen_read))
+Stoker_sequences = np.asarray(tokenizer.texts_to_sequences(Stoker_read))
 np.random.shuffle(Austen_sequences)
 np.random.shuffle(Stoker_sequences)
-#print(Austen_sequences)
-#print(Stoker_sequences)
-Austen_split=int(Austen_sequences.shape[0]*0.75)
-Stoker_split=int(Stoker_sequences.shape[0]*0.75)
-Austen_file=Austen[:-4]
-Stoker_file=Stoker[:-4]
-#for line in range(0,Stoker_split):
-    #np.savetxt(Stoker[:-4],Stoker_sequences[line],fmt='%i')
-#np.savetxt(sys.stdout,Stoker_sequences[0:Stoker_split],fmt='%s',delimiter=',')
-np.savetxt(Stoker_file+'.train',Stoker_sequences[0:Stoker_split],fmt='%s',delimiter=',')
-np.savetxt(Stoker_file+'.test',Stoker_sequences[Stoker_split:],fmt='%s',delimiter=',')
-np.savetxt(Austen_file+'.train',Austen_sequences[0:Austen_split],fmt='%s',delimiter=',')
-np.savetxt(Austen_file+'.test',Austen_sequences[Austen_split:],fmt='%s',delimiter=',')
-word_index=tokenizer.word_index
-sorted_word_index=np.asarray(sorted(word_index.items(),key=operator.itemgetter(1)))
-np.savetxt('Vocab.dat',sorted_word_index[:,0],fmt="%s")
+# print(Austen_sequences)
+# print(Stoker_sequences)
+Austen_split = int(Austen_sequences.shape[0] * 0.75)
+Stoker_split = int(Stoker_sequences.shape[0] * 0.75)
+Austen_file = Austen[:-4]
+Stoker_file = Stoker[:-4]
+# for line in range(0,Stoker_split):
+# np.savetxt(Stoker[:-4],Stoker_sequences[line],fmt='%i')
+# np.savetxt(sys.stdout,Stoker_sequences[0:Stoker_split],fmt='%s',delimiter=',')
+np.savetxt(
+    Stoker_file + '.train',
+    Stoker_sequences[0:Stoker_split],
+    fmt='%s',
+    delimiter=',')
+np.savetxt(
+    Stoker_file + '.test',
+    Stoker_sequences[Stoker_split:],
+    fmt='%s',
+    delimiter=',')
+np.savetxt(
+    Austen_file + '.train',
+    Austen_sequences[0:Austen_split],
+    fmt='%s',
+    delimiter=',')
+np.savetxt(
+    Austen_file + '.test',
+    Austen_sequences[Austen_split:],
+    fmt='%s',
+    delimiter=',')
+word_index = tokenizer.word_index
+word_index['FeelsBadMan'] = 0
+sorted_word_index = np.asarray(
+    sorted(word_index.items(), key=operator.itemgetter(1)))
+np.savetxt('Vocab.dat', sorted_word_index[:, 0], fmt="%s")
