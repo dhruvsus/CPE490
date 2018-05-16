@@ -24,3 +24,142 @@
 [I 12:47:01.093 NotebookApp] Saving file at /PrepareData.ipynb
 [I 12:47:45.910 NotebookApp] Starting buffering for aa67c8e7-4a6e-4778-a000-b15a243faf5f:a56b21854395411a87c0d8a4e4b0d155
 [IPKernelApp] WARNING | Parent appears to have exited, shutting down.
+[I 14:52:17.622 NotebookApp] Writing notebook server cookie secret to /run/user/2965379/jupyter/notebook_cookie_secret
+[I 14:52:18.041 NotebookApp] Serving notebooks from local directory: /home/dsingal/CPE490/lab4
+[I 14:52:18.041 NotebookApp] 0 active kernels
+[I 14:52:18.042 NotebookApp] The Jupyter Notebook is running at:
+[I 14:52:18.042 NotebookApp] http://localhost:8889/
+[I 14:52:18.042 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[I 14:53:20.569 NotebookApp] 302 GET / (::1) 1.21ms
+[I 14:53:20.587 NotebookApp] 302 GET /tree? (::1) 1.71ms
+[I 14:53:27.521 NotebookApp] 302 POST /login?next=%2Ftree%3F (::1) 2.26ms
+[I 14:53:52.641 NotebookApp] Kernel started: 8be0c208-f770-4d99-8b7a-839f07599d7b
+[I 14:53:53.469 NotebookApp] Adapting to protocol v5.1 for kernel 8be0c208-f770-4d99-8b7a-839f07599d7b
+[I 14:54:53.826 NotebookApp] Saving file at /PrepareData.ipynb
+[I 14:55:53.122 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:05:52.653 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:07:52.651 NotebookApp] Saving file at /PrepareData.ipynb
+[W 15:08:03.356 NotebookApp] 400 GET /api/contents/Austen.txt?type=file&format=text&_=1526422083251 (::1): /home/dsingal/CPE490/lab4/Austen.txt is not UTF-8 encoded
+[W 15:08:03.357 NotebookApp] /home/dsingal/CPE490/lab4/Austen.txt is not UTF-8 encoded
+[W 15:08:03.357 NotebookApp] 400 GET /api/contents/Austen.txt?type=file&format=text&_=1526422083251 (::1) 3.78ms referer=http://localhost:8000/edit/Austen.txt
+[W 15:08:30.089 NotebookApp] 400 GET /api/contents/Austen.txt?type=file&format=text&_=1526422109984 (::1): /home/dsingal/CPE490/lab4/Austen.txt is not UTF-8 encoded
+[W 15:08:30.090 NotebookApp] /home/dsingal/CPE490/lab4/Austen.txt is not UTF-8 encoded
+[W 15:08:30.090 NotebookApp] 400 GET /api/contents/Austen.txt?type=file&format=text&_=1526422109984 (::1) 4.35ms referer=http://localhost:8000/edit/Austen.txt
+[I 15:11:52.648 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:15:53.127 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:23:53.122 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:31:52.651 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:33:52.606 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:35:52.627 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:37:52.603 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:39:52.606 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:41:52.641 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:43:53.129 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:45:52.657 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:47:53.142 NotebookApp] Saving file at /PrepareData.ipynb
+[I 15:49:53.142 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:00:45.352 NotebookApp] Starting buffering for 8be0c208-f770-4d99-8b7a-839f07599d7b:d06b62c15aa84cb488b2546448e7bf4d
+[W 16:02:00.434 NotebookApp] Forbidden
+[W 16:02:00.436 NotebookApp] 403 GET /api/config/edit?_=1526425320358 (::1) 3.48ms referer=http://localhost:8000/edit/Stoker.txt
+[W 16:02:00.438 NotebookApp] Forbidden
+[W 16:02:00.439 NotebookApp] 403 GET /api/config/common?_=1526425320359 (::1) 1.63ms referer=http://localhost:8000/edit/Stoker.txt
+[W 16:02:00.453 NotebookApp] Forbidden
+[W 16:02:00.454 NotebookApp] 403 GET /api/contents/Stoker.txt?type=file&format=text&_=1526425320360 (::1) 1.62ms referer=http://localhost:8000/edit/Stoker.txt
+[W 16:02:01.381 NotebookApp] Forbidden
+[W 16:02:01.382 NotebookApp] 403 GET /api/config/edit?_=1526425321311 (::1) 1.63ms referer=http://localhost:8000/edit/Austen.txt
+[W 16:02:01.384 NotebookApp] Forbidden
+[W 16:02:01.385 NotebookApp] 403 GET /api/config/common?_=1526425321312 (::1) 1.62ms referer=http://localhost:8000/edit/Austen.txt
+[W 16:02:01.411 NotebookApp] Forbidden
+[W 16:02:01.411 NotebookApp] 403 GET /api/contents/Austen.txt?type=file&format=text&_=1526425321313 (::1) 1.67ms referer=http://localhost:8000/edit/Austen.txt
+[W 16:02:02.018 NotebookApp] Forbidden
+[W 16:02:02.019 NotebookApp] 403 GET /api/config/common?_=1526425321944 (::1) 1.91ms referer=http://localhost:8000/edit/Austen.txt
+[W 16:02:02.020 NotebookApp] Forbidden
+[W 16:02:02.021 NotebookApp] 403 GET /api/config/edit?_=1526425321943 (::1) 1.64ms referer=http://localhost:8000/edit/Austen.txt
+[W 16:02:02.043 NotebookApp] Forbidden
+[W 16:02:02.044 NotebookApp] 403 GET /api/contents/Austen.txt?type=file&format=text&_=1526425321945 (::1) 1.59ms referer=http://localhost:8000/edit/Austen.txt
+[I 16:02:11.059 NotebookApp] 302 GET / (::1) 0.96ms
+[I 16:02:11.070 NotebookApp] 302 GET /tree? (::1) 1.34ms
+[I 16:02:17.495 NotebookApp] 302 POST /login?next=%2Ftree%3F (::1) 2.20ms
+[I 16:02:24.037 NotebookApp] Adapting to protocol v5.1 for kernel 8be0c208-f770-4d99-8b7a-839f07599d7b
+[I 16:04:45.490 NotebookApp] Starting buffering for 8be0c208-f770-4d99-8b7a-839f07599d7b:7df173bd666d4c039e44c37f93760f2a
+[W 16:04:53.198 NotebookApp] Forbidden
+[W 16:04:53.199 NotebookApp] 403 GET /api/config/common?_=1526425493079 (::1) 1.74ms referer=http://localhost:8000/notebooks/PrepareData.ipynb
+[W 16:04:53.201 NotebookApp] Forbidden
+[W 16:04:53.202 NotebookApp] 403 GET /api/config/notebook?_=1526425493078 (::1) 1.64ms referer=http://localhost:8000/notebooks/PrepareData.ipynb
+[W 16:04:53.328 NotebookApp] Forbidden
+[W 16:04:53.329 NotebookApp] 403 GET /api/contents/PrepareData.ipynb?type=notebook&_=1526425493080 (::1) 1.70ms referer=http://localhost:8000/notebooks/PrepareData.ipynb
+[W 16:04:54.127 NotebookApp] Forbidden
+[W 16:04:54.128 NotebookApp] 403 GET /api/config/tree?_=1526425493519 (::1) 2.24ms referer=http://localhost:8000/tree?
+[W 16:04:54.131 NotebookApp] Forbidden
+[W 16:04:54.131 NotebookApp] 403 GET /api/config/common?_=1526425493520 (::1) 1.64ms referer=http://localhost:8000/tree?
+[W 16:04:54.153 NotebookApp] Forbidden
+[W 16:04:54.154 NotebookApp] 403 GET /api/terminals?_=1526425493521 (::1) 1.48ms referer=http://localhost:8000/tree?
+[W 16:04:54.164 NotebookApp] Forbidden
+[W 16:04:54.164 NotebookApp] 403 GET /api/sessions?_=1526425493522 (::1) 1.56ms referer=http://localhost:8000/tree?
+[W 16:04:54.177 NotebookApp] Forbidden
+[W 16:04:54.178 NotebookApp] 403 GET /api/terminals?_=1526425493523 (::1) 1.43ms referer=http://localhost:8000/tree?
+[I 16:05:50.290 NotebookApp] 302 GET /notebooks/PrepareData.ipynb (::1) 1.46ms
+[W 16:05:55.072 NotebookApp] Forbidden
+[W 16:05:55.073 NotebookApp] 403 GET /api/sessions?_=1526425493524 (::1) 1.70ms referer=http://localhost:8000/tree?
+[W 16:05:55.075 NotebookApp] Forbidden
+[W 16:05:55.076 NotebookApp] 403 GET /api/terminals?_=1526425493525 (::1) 1.58ms referer=http://localhost:8000/tree?
+[I 16:05:56.151 NotebookApp] 302 POST /login?next=%2Fnotebooks%2FPrepareData.ipynb (::1) 2.20ms
+[I 16:05:58.014 NotebookApp] Adapting to protocol v5.1 for kernel 8be0c208-f770-4d99-8b7a-839f07599d7b
+[I 16:07:58.148 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:17:58.024 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:25:57.954 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:27:57.960 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:29:57.958 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:31:57.955 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:33:57.955 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:35:57.959 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:37:57.957 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:41:58.090 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:43:57.961 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:45:57.953 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:47:57.956 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:49:57.956 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:51:51.035 NotebookApp] Starting buffering for 8be0c208-f770-4d99-8b7a-839f07599d7b:2420ceca15fd4f89bc13a529e77b8d8f
+[I 16:51:51.350 NotebookApp] Kernel restarted: 8be0c208-f770-4d99-8b7a-839f07599d7b
+[I 16:51:52.002 NotebookApp] Adapting to protocol v5.1 for kernel 8be0c208-f770-4d99-8b7a-839f07599d7b
+[I 16:51:52.004 NotebookApp] Restoring connection for 8be0c208-f770-4d99-8b7a-839f07599d7b:2420ceca15fd4f89bc13a529e77b8d8f
+[I 16:51:52.004 NotebookApp] Replaying 3 buffered messages
+[I 16:51:57.956 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:52:21.283 NotebookApp] Starting buffering for 8be0c208-f770-4d99-8b7a-839f07599d7b:2420ceca15fd4f89bc13a529e77b8d8f
+[I 16:52:21.596 NotebookApp] Kernel restarted: 8be0c208-f770-4d99-8b7a-839f07599d7b
+[I 16:52:22.227 NotebookApp] Adapting to protocol v5.1 for kernel 8be0c208-f770-4d99-8b7a-839f07599d7b
+[I 16:52:22.229 NotebookApp] Restoring connection for 8be0c208-f770-4d99-8b7a-839f07599d7b:2420ceca15fd4f89bc13a529e77b8d8f
+[I 16:52:22.229 NotebookApp] Replaying 6 buffered messages
+[I 16:53:57.968 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:55:57.957 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:57:57.957 NotebookApp] Saving file at /PrepareData.ipynb
+[I 16:59:57.959 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:01:57.958 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:03:58.019 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:05:58.084 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:09:57.961 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:11:58.084 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:13:57.962 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:15:58.087 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:21:18.333 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:23:57.958 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:25:57.961 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:27:57.961 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:29:57.962 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:31:57.959 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:33:57.961 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:35:57.958 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:37:57.965 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:39:57.959 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:41:57.965 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:43:57.962 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:45:57.958 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:47:57.962 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:51:57.974 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:53:58.425 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:55:57.964 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:57:57.961 NotebookApp] Saving file at /PrepareData.ipynb
+[I 17:59:57.961 NotebookApp] Saving file at /PrepareData.ipynb
+[I 18:01:58.014 NotebookApp] Saving file at /PrepareData.ipynb
+[I 18:02:59.645 NotebookApp] Saving file at /PrepareData.ipynb
+[I 18:02:59.900 NotebookApp] Saving file at /PrepareData.ipynb
