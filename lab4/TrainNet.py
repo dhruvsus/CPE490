@@ -2,6 +2,7 @@ from keras import models, layers, optimizers
 from keras.models import load_model
 from keras.callbacks import ModelCheckpoint
 import sys
+import matplotlib.pyplot as plt
 from keras.datasets import imdb
 from keras.preprocessing import sequence
 import numpy as np
@@ -59,36 +60,37 @@ val_gen = generator(
     batch_size=batch_size)
 model = models.Sequential()
 model.add(layers.Embedding(12000, 64, input_length=MAXLEN))
-model.add(layers.LSTM(32, dropout=0.3, recurrent_dropout=0.3))
-model.add(layers.Dense(16, activation='relu'))
+model.add(layers.LSTM(64, dropout=0.5, recurrent_dropout=0.5))
+model.add(layers.Dense(32, activation='relu'))
+model.add(layers.Dropout(0.5))
 model.add(layers.Dense(1, activation='sigmoid'))
-model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['acc'])
+model.compile(optimizer='nadam', loss='binary_crossentropy', metrics=['acc'])
 '''
 saves the model weights after each epoch if the validation loss decreased
 '''
 checkpointer = ModelCheckpoint(
-    filepath='PorV.h5', verbose=0, save_best_only=True, monitor='val_acc')
+    filepath='PorV.h5', verbose=1, monitor='val_acc')
 history = model.fit_generator(
     train_gen,
     steps_per_epoch=int(max(stoker_len * 0.9, austen_len * 0.9) // batch_size),
-    epochs=40,
+    epochs=5,
     validation_data=val_gen,
     validation_steps=int(
         max(stoker_len * 0.1, austen_len * 0.1) // batch_size),
     callbacks=[checkpointer],
-    verbose=0)
-"""hst = history.history
+    verbose=1)
+hst = history.history
 x_axis = range(0, len(hst['acc']))
 plt.plot(x_axis, hst['acc'], 'bo')
 plt.plot(x_axis, hst['val_acc'], 'ro')
-plt.show()"""
+plt.show()
 model.save('PorV.h5')
 # next steps: Embedding.datasets
 model = load_model('PorV.h5')
 model2 = models.Sequential()
 model2.add(
     layers.Embedding(
-        12000, 32, input_length=MAXLEN, weights=model.layers[0].get_weights()))
+        12000, 64, input_length=MAXLEN, weights=model.layers[0].get_weights()))
 # build numpy array to predict
 temp = []
 for i in range(12000):
