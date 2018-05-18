@@ -16,4 +16,5 @@ for line in sys.stdin.readlines():
 test_sequence = np.asarray(test_sequence)
 test_sequence = sequence.pad_sequences(test_sequence, maxlen=MAXLEN)
 test_label = model.predict_classes(test_sequence)
-np.savetxt(sys.stdout, test_label, fmt='%d')
+print(test_label.sum()/test_label.size)
+# np.savetxt(sys.stdout, test_label, fmt='%d')
