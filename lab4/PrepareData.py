@@ -30,7 +30,7 @@ with open(Austen, encoding="ISO-8859-1") as Austen_open:
     for line_number, line in enumerate(Austen_read):
         if (len(line) in range(0, 10)):
             del (Austen_read[line_number])
-    # print(len(Austen_read))
+    print(len(Austen_read))
     # print(*Austen_read,sep='\n')
 with open(Stoker) as Stoker_open:
     Stoker_read = Stoker_open.read()
@@ -69,11 +69,11 @@ with open(Stoker) as Stoker_open:
     for line_number, line in enumerate(Stoker_read):
         if (len(line) in range(0, 10)):
             del (Stoker_read[line_number])
-    # print(len(Stoker_read))
+    print(len(Stoker_read))
     # print(*Stoker_read,sep='\n')
 samples = Austen_read + Stoker_read
 # print(samples)
-tokenizer = Tokenizer(num_words=12000)
+tokenizer = Tokenizer(num_words=10000)
 tokenizer.fit_on_texts(samples)
 Austen_sequences = np.asarray(tokenizer.texts_to_sequences(Austen_read))
 Stoker_sequences = np.asarray(tokenizer.texts_to_sequences(Stoker_read))
@@ -112,4 +112,4 @@ word_index = tokenizer.word_index
 word_index['FeelsBadMan'] = 0
 sorted_word_index = np.asarray(
     sorted(word_index.items(), key=operator.itemgetter(1)))
-np.savetxt('Vocab.dat', sorted_word_index[:12000, 0], fmt="%s")
+np.savetxt('Vocab.dat', sorted_word_index[:10000, 0], fmt="%s")
