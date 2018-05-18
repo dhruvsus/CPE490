@@ -79,11 +79,11 @@ history = model.fit_generator(
         max(stoker_len * 0.1, austen_len * 0.1) // batch_size),
     callbacks=[checkpointer],
     verbose=1)
-hst = history.history
+"""hst = history.history
 x_axis = range(0, len(hst['acc']))
 plt.plot(x_axis, hst['acc'], 'bo')
 plt.plot(x_axis, hst['val_acc'], 'ro')
-plt.show()
+plt.show()"""
 model.save('PorV.h5')
 # next steps: Embedding.datasets
 model = load_model('PorV.h5')
