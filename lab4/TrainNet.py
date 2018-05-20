@@ -80,20 +80,20 @@ checkpointer = ModelCheckpoint(
 # model.summary()
 history = model.fit_generator(
     train_gen,
-    steps_per_epoch=((stoker_split+austen_split) // batch_size) + 1,
-    epochs=5,
+    steps_per_epoch=((stoker_split + austen_split) // batch_size) + 1,
+    epochs=8,
     validation_data=val_gen,
-    validation_steps=((stoker_split2+ austen_split2) // batch_size) + 1,
+    validation_steps=((stoker_split2 + austen_split2) // batch_size) + 1,
     callbacks=[checkpointer],
     verbose=0)
 hst = history.history
 # train on validation data now
 history = model.fit_generator(
     val_gen,
-    steps_per_epoch=((stoker_split2+ austen_split2) // batch_size) + 1,
-    epochs=5,
+    steps_per_epoch=((stoker_split2 + austen_split2) // batch_size) + 1,
+    epochs=8,
     validation_data=train_gen,
-    validation_steps=((stoker_split+ austen_split) // batch_size) + 1,
+    validation_steps=((stoker_split + austen_split) // batch_size) + 1,
     callbacks=[checkpointer],
     verbose=0)
 # model.save('PorV.h5')
@@ -112,5 +112,5 @@ for i in range(num_words):
     temp.append([i])
 temp = sequence.pad_sequences(temp, maxlen=MAXLEN)
 activations = model2.predict(temp)
-intermediate = activations[:, 0, :]
+intermediate = activations[:,-1, :]
 np.savetxt('Embedding.dat', intermediate, fmt='%2e')
