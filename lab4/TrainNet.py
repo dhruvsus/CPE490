@@ -2,8 +2,6 @@ from keras import models, layers, optimizers
 from keras.models import load_model
 from keras.callbacks import ModelCheckpoint
 import sys
-import matplotlib.pyplot as plt
-from keras.datasets import imdb
 from keras.preprocessing import sequence
 import numpy as np
 stoker = sys.argv[1]
@@ -76,7 +74,7 @@ model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['acc'])
 checkpointer = ModelCheckpoint(
     filepath='PorV.h5',
     monitor='val_acc',
-    verbose=1,
+    verbose=0,
     save_best_only=True,
     mode='max')
 model.summary()
@@ -87,13 +85,17 @@ history = model.fit_generator(
     validation_data=val_gen,
     validation_steps=(max(stoker_split2, austen_split2) // batch_size) + 1,
     callbacks=[checkpointer],
-    verbose=1)
+    verbose=0)
 hst = history.history
-x_axis = range(0, len(hst['acc']))
-plt.plot(x_axis, hst['acc'], 'bo')
-plt.plot(x_axis, hst['val_acc'], 'ro')
-plt.show()
-plt.savefig('try1.png')
+# train on validation data now
+history = model.fit_generator(
+    val_gen,
+    steps_per_epoch=(max(stoker_split2, austen_split2) // batch_size) + 1,
+    epochs=5,
+    validation_data=train_gen,
+    validation_steps=(max(stoker_split, austen_split) // batch_size) + 1,
+    callbacks=[checkpointer],
+    verbose=0)
 # model.save('PorV.h5')
 # next steps: Embedding.datasets
 model = load_model('PorV.h5')

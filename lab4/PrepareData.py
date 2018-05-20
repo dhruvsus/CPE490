@@ -28,7 +28,7 @@ with open(Austen, encoding="ISO-8859-1") as Austen_open:
     Austen_read = list(map(lambda x: x.lstrip().rstrip(), Austen_read))
     Austen_read = list(map(lambda x: x.lstrip().rstrip(), Austen_read))
     for line_number, line in enumerate(Austen_read):
-        if (len(line) in range(0, 20)):
+        if (len(line) in range(0, 10)):
             del (Austen_read[line_number])
     # print(*Austen_read,sep='\n')
 with open(Stoker) as Stoker_open:
@@ -66,7 +66,7 @@ with open(Stoker) as Stoker_open:
     Stoker_read = re.split(pattern='[.;?!]', string=Stoker_read)
     Stoker_read = list(map(lambda x: x.lstrip().rstrip(), Stoker_read))
     for line_number, line in enumerate(Stoker_read):
-        if (len(line) in range(0, 20)):
+        if (len(line) in range(0, 10)):
             del (Stoker_read[line_number])
     # print(*Stoker_read,sep='\n')
 samples = Austen_read + Stoker_read
