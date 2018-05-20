@@ -67,7 +67,7 @@ val_gen = generator(
     austen_split2,
     batch_size=batch_size)
 model = models.Sequential()
-model.add(layers.Embedding(12000, 16, input_length=MAXLEN))
+model.add(layers.Embedding(num_words, 16, input_length=MAXLEN))
 model.add(layers.LSTM(32))
 model.add(layers.Dense(32, activation='relu'))
 model.add(layers.Dense(1, activation='sigmoid'))
@@ -83,7 +83,7 @@ model.summary()
 history = model.fit_generator(
     train_gen,
     steps_per_epoch=(max(stoker_split, austen_split) // batch_size) + 1,
-    epochs=20,
+    epochs=5,
     validation_data=val_gen,
     validation_steps=(max(stoker_split2, austen_split2) // batch_size) + 1,
     callbacks=[checkpointer],
@@ -96,16 +96,19 @@ plt.show()
 plt.savefig('try1.png')
 # model.save('PorV.h5')
 # next steps: Embedding.datasets
-"""model = load_model('PorV.h5')
+model = load_model('PorV.h5')
 model2 = models.Sequential()
 model2.add(
     layers.Embedding(
-        10000, 16, input_length=MAXLEN, weights=model.layers[0].get_weights()))
+        num_words,
+        16,
+        input_length=MAXLEN,
+        weights=model.layers[0].get_weights()))
 # build numpy array to predict
 temp = []
-for i in range(10000):
+for i in range(num_words):
     temp.append([i])
 temp = sequence.pad_sequences(temp, maxlen=MAXLEN)
 activations = model2.predict(temp)
 intermediate = activations[:, 0, :]
-np.savetxt('Embedding.dat', intermediate, fmt='%2e')"""
+np.savetxt('Embedding.dat', intermediate, fmt='%2e')
