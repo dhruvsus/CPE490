@@ -112,5 +112,5 @@ for i in range(num_words):
     temp.append([i])
 temp = sequence.pad_sequences(temp, maxlen=MAXLEN)
 activations = model2.predict(temp)
-intermediate = activations[:,-1, :]
+intermediate = activations[:, -1, :]
 np.savetxt('Embedding.dat', intermediate, fmt='%2e')
