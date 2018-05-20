@@ -73,7 +73,7 @@ with open(Stoker) as Stoker_open:
     # print(*Stoker_read,sep='\n')
 samples = Austen_read + Stoker_read
 # print(samples)
-tokenizer = Tokenizer(num_words=10000)
+tokenizer = Tokenizer(num_words=12000)
 tokenizer.fit_on_texts(samples)
 Austen_sequences = np.asarray(tokenizer.texts_to_sequences(Austen_read))
 Stoker_sequences = np.asarray(tokenizer.texts_to_sequences(Stoker_read))

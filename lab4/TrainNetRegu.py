@@ -70,6 +70,7 @@ model = models.Sequential()
 model.add(layers.Embedding(12000, 16, input_length=MAXLEN))
 model.add(layers.LSTM(32))
 model.add(layers.Dense(32, activation='relu'))
+model.add(layers.Dropout(rate=0.2))
 model.add(layers.Dense(1, activation='sigmoid'))
 model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['acc'])
 # checkpoint
