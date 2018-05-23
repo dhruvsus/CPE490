@@ -1,0 +1,50 @@
+Dimension:  1
+LOWEST 10 lizzy lydia colonel longbourn charlotte bennet darcy bingley jane elizabeth
+HIGHEST 10 mina jonathan professor helsing dr lucy blood arthur sleep box
+Dimension:  2
+LOWEST 10 lydia bingleys family gardiner lizzy jane darcy bennet elizabeth bingley
+HIGHEST 10 count lucy sleep jonathan sun professor box lucys tonight blood
+Dimension:  3
+LOWEST 10 affection aunt charlotte gardiner lizzy darcy jane elizabeth bennet bingley
+HIGHEST 10 arthur dr jonathan count lucy mina van sewards harker diary
+Dimension:  4
+LOWEST 10 lydia longbourn gardiner lizzy aunt darcy bennet elizabeth jane bingley
+HIGHEST 10 lucy dr jonathan blood mina sewards sun count diary terrible
+Dimension:  5
+LOWEST 10 van harker arthur quincey count professor helsing lucys lucy jonathan
+HIGHEST 10 elizabeth bingley jane bennet darcy lizzy lydia longbourn gardiner charlotte
+Dimension:  6
+LOWEST 10 character wickham lizzy gardiner longbourn bennet darcy bingley jane elizabeth
+HIGHEST 10 mina lucy jonathan count dr soul sleep arthur van professor
+Dimension:  7
+LOWEST 10 jonathan diary van helsing professor count lucy dr blood mina
+HIGHEST 10 jane bingley elizabeth bennet darcy lydia lizzy charlotte family collins
+Dimension:  8
+LOWEST 10 family longbourn lizzy lydia wickham darcy bennet bingley jane elizabeth
+HIGHEST 10 dr arthur mina lucy jonathan blood van sun harker lucys
+Dimension:  9
+LOWEST 10 harker ship sun dr jonathan helsing count arthur lucy mina
+HIGHEST 10 elizabeth bennet bingley darcy jane gardiner aunt wickham lizzy family
+Dimension:  10
+LOWEST 10 dawn old body sign went helsing moonlight jonathan van better
+HIGHEST 10 bennet dr darcy jane obliged collins bingley william gardiner merely
+Dimension:  11
+LOWEST 10 jonathan mina family mr wickham bennet jane bingley elizabeth darcy
+HIGHEST 10 i should have lives words affable shopping reader carved believing
+Dimension:  12
+LOWEST 10 aunt charlotte collins longbourn lizzy darcy jane bennet bingley elizabeth
+HIGHEST 10 dr count sewards blood lucy mina van jonathan box dead
+Dimension:  13
+LOWEST 10 sun professor sleep van helsing arthur count mina dr jonathan
+HIGHEST 10 elizabeth bennet bingley lizzy jane darcy longbourn wickham gardiner lydia
+Dimension:  14
+LOWEST 10 gardiner longbourn collins lizzy lydia darcy bennet bingley jane elizabeth
+HIGHEST 10 mina blood count lucy jonathan dr harker sleep soul diary
+Dimension:  15
+LOWEST 10 terrible quincey count sleep van arthur lucy mina jonathan dr
+HIGHEST 10 elizabeth jane bingley bennet darcy aunt longbourn lizzy character gardiner
+Dimension:  16
+LOWEST 10 box harker van sleep dr blood professor lucy count jonathan
+HIGHEST 10 elizabeth bingley jane bennet lizzy lydia aunt darcy wickham gardiner
+Due to Dimension 1 being mostly names, I think that it is trying to embed names.
+I think Dimension 2 might be trying to embed the genderness of words. 

@@ -33,32 +33,32 @@ with open(Austen, encoding="ISO-8859-1") as Austen_open:
     # print(*Austen_read,sep='\n')
 with open(Stoker) as Stoker_open:
     Stoker_read = Stoker_open.read()
-    #fix time
+    # fix time
     p = re.compile('P\.\s?M\.', re.I)
     Stoker_read = p.sub('', Stoker_read)
     p = re.compile('[0-9]')
     Stoker_read = p.sub('', Stoker_read)
-    #remove personal comments
+    # remove personal comments
     p = re.compile('\(.+\)', re.I)
     Stoker_read = p.sub('', Stoker_read)
-    #remove diary entry starts of the form _......--
+    # remove diary entry starts of the form _......--
     p = re.compile('_.+--', re.I)
     Stoker_read = p.sub('', Stoker_read)
-    #since -- seems to seperate sentences
+    # since -- seems to seperate sentences
     p = re.compile('--')
     Stoker_read = p.sub('.', Stoker_read)
-    #filter for the Mr. Mrs. etc
+    # filter for the Mr. Mrs. etc
     p = re.compile('(?<=Mr|rs)\.', re.I)
     Stoker_read = p.sub('', Stoker_read)
-    #remove ******** lines
+    # remove ******** lines
     p = re.compile('.+\*+.+', re.I)
     Stoker_read = p.sub('', Stoker_read)
-    #remove quotation and other random marks
+    # remove quotation and other random marks
     p = re.compile('[{}()\-_~`#$%^&*+=\\\|:\"\']')
     Stoker_read = p.sub('', Stoker_read)
-    #print(Stoker_read)
-    #try splitting using ending punctuation.
-    #remove newlines
+    # print(Stoker_read)
+    # try splitting using ending punctuation.
+    # remove newlines
     p = re.compile('\n')
     Stoker_read = p.sub(' ', Stoker_read)
     p = re.compile('[A-Z]{2,}')

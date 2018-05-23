@@ -17,5 +17,5 @@ for dimension in range(16):
     highest_10 = np.take(vocab_sequence, highest_10)
     lowest_10 = np.insert(lowest_10, 0, "LOWEST 10")
     highest_10 = np.insert(highest_10, 0, "HIGHEST 10")
-    #print(np.hstack((lowest_10, highest_10)))
+    # print(np.hstack((lowest_10, highest_10)))
     np.savetxt(sys.stdout, np.vstack((lowest_10, highest_10)), fmt='%s')
