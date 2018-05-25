@@ -1,0 +1,4 @@
+{
+   "arch": [[2, ""], [5, "relu"], [3, "softmax"]],
+   "err": "cross_entropy"
+}
