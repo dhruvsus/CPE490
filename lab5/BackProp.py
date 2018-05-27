@@ -1,6 +1,7 @@
 import numpy as np
 import numpy.random as rnd
 import json, sys
+
 """
 class Layer:
     # dim  -- number of neurons in the layer
@@ -50,50 +51,61 @@ class Layer:
     # Return string description of self for debugging
     def __repr__(self):
       
+"""
+
 
 class Network:
     # arch -- list of (dim, act) pairs
     # err -- error function: "cross_entropy" or "mse"
     # wgts -- list of one 2-d np.array per layer in arch
-    def __init__(self, arch, err, wgts = None):
-    
+    def __init__(self, arch, err, wgts=None):
+        self.arch = arch
+        self.err = err
+        self.wgts = wgts
+
     # Forward propagate, passing inputs to first layer, and returning outputs
     # of final layer
-    def predict(self, inputs):
 
-        
-    # Assuming forward propagation is done, return current error, assuming
-    # expected final layer output is |labels|
-    def get_err(self, labels):
 
-    
-    # Assuming a predict was just done, update all in_derivs, and add to batch_derivs
-    def backpropagate(self, labels):
+#    def predict(self, inputs):
 
-    
-    # Verify all partial derivatives for weights by adding an
-    # epsilon value to each weight and rerunning prediction to
-    # see if change in error correctly reflects weight change
-    def validate_derivs(self, inputs, outputs):
 
-    
-    # Run a batch, assuming |data| holds input/output pairs comprising the batch
-    # Forward propagate for each input, record error, and backpropagate.  At batch
-    # end, report average error for the batch, and do a derivative update.
-    def run_batch(self, data, rate):
-"""
+# Assuming forward propagation is done, return current error, assuming
+# expected final layer output is |labels|
+#    def get_err(self, labels):
+
+
+# Assuming a predict was just done, update all in_derivs, and add to batch_derivs
+#    def backpropagate(self, labels):
+
+
+# Verify all partial derivatives for weights by adding an
+# epsilon value to each weight and rerunning prediction to
+# see if change in error correctly reflects weight change
+#    def validate_derivs(self, inputs, outputs):
+
+
+# Run a batch, assuming |data| holds input/output pairs comprising the batch
+# Forward propagate for each input, record error, and backpropagate.  At batch
+# end, report average error for the batch, and do a derivative update.
+#    def run_batch(self, data, rate):
 
 
 def load_config(cfg_file):
-    with open(cfg_file) as config:
-        config_str = config.read()
-        print(config_str)
+    errors = {"cross_entropy": 1, "mse": 2}
+    activations = {"relu": 1, "softmax": 2}
+    with open(cfg_file, "r") as config:
+        config_json = json.load(config)
+        model = Network(
+            arch=config_json["arch"],
+            err=errors[config_json["err"]],
+            wgts=config_json.get("wgts"),
+        )
+        print(model.err, model.wgts)
 
 
 def main(cmd, cfg_file, data_file):
     commands = {"verify": 1, "run": 2}
-    errors = {"cross_entropy": 1, "mse": 2}
-    activations = {"relu": 1, "softmax": 2}
     # the way this is handled, the strings for the hyperparameters are
     # converted to numbers, and used in variables like command and activation
     command = commands[cmd]
