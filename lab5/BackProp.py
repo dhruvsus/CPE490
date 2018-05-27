@@ -1,7 +1,7 @@
 import numpy as np
 import numpy.random as rnd
 import json, sys
-
+"""
 class Layer:
     # dim  -- number of neurons in the layer
     # prev -- prior layer, or None if input layer.  If None, all following
@@ -81,9 +81,23 @@ class Network:
     # Forward propagate for each input, record error, and backpropagate.  At batch
     # end, report average error for the batch, and do a derivative update.
     def run_batch(self, data, rate):
+"""
 
-            
+
+def load_config(cfg_file):
+    with open(cfg_file) as config:
+        config_str = config.read()
+        print(config_str)
+
+
 def main(cmd, cfg_file, data_file):
+    commands = {"verify": 1, "run": 2}
+    errors = {"cross_entropy": 1, "mse": 2}
+    activations = {"relu": 1, "softmax": 2}
+    # the way this is handled, the strings for the hyperparameters are
+    # converted to numbers, and used in variables like command and activation
+    command = commands[cmd]
+    load_config(cfg_file)
 
-    
+
 main(sys.argv[1], sys.argv[2], sys.argv[3])
