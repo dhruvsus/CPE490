@@ -2,8 +2,8 @@ import numpy as np
 import numpy.random as rnd
 import json, sys
 
-"""
-class Layer:
+
+"""class Layer:
     # dim  -- number of neurons in the layer
     # prev -- prior layer, or None if input layer.  If None, all following
     #  params are ignored.
@@ -19,11 +19,14 @@ class Layer:
     # z_derivs -- derivatives of E/Z for last sample
     # batch_derivs -- cumulative sum of in_derivs across current batch
     def __init__(self, dim, prev, act, act_prime, weights=None):
-
+        self.dim=dim
+        self.prev=prev
+        self.act=act
+        self.act_prime=act_prime
+        self.weights=weights
     def get_dim(self):
-    
+        return self.dim
     def get_deriv(self, src, trg):
-   
     # Compute self.outputs, using vals if given, else using outputs from
     # previous layer and passing through our in_weights and activation.
     def propagate(self, vals = None):
@@ -50,10 +53,7 @@ class Layer:
 
     # Return string description of self for debugging
     def __repr__(self):
-      
-"""
-
-
+"""     
 class Network:
     # arch -- list of (dim, act) pairs
     # err -- error function: "cross_entropy" or "mse"
@@ -62,9 +62,8 @@ class Network:
         self.arch = arch
         self.err = err
         self.wgts = wgts
-
-    # Forward propagate, passing inputs to first layer, and returning outputs
-    # of final layer
+# Forward propagate, passing inputs to first layer, and returning outputs
+# of final layer
 
 
 #    def predict(self, inputs):
@@ -89,27 +88,32 @@ class Network:
 # Forward propagate for each input, record error, and backpropagate.  At batch
 # end, report average error for the batch, and do a derivative update.
 #    def run_batch(self, data, rate):
-
-
+# TODO: change range for wgts 
 def load_config(cfg_file):
     errors = {"cross_entropy": 1, "mse": 2}
     activations = {"relu": 1, "softmax": 2}
     with open(cfg_file, "r") as config:
         config_json = json.load(config)
+        num_layers=len(config_json["arch"])
         model = Network(
             arch=config_json["arch"],
             err=errors[config_json["err"]],
-            wgts=config_json.get("wgts"),
+            wgts=[np.vstack(config_json.get("wgts")[i]) for i in range(num_layers-1)],
         )
-        print(model.err, model.wgts)
-
-
+    return model
+def load_data(data_file):
+    with open(data_file, "r") as data:
+        data_json=json.loads(data.read())
+        input=[data_json[i][0] for i in range(len(data_json))]
+        input=np.vstack(input)
+        output=[data_json[i][1] for i in range(len(data_json))]
+        output=np.vstack(output)
+        return input,output
 def main(cmd, cfg_file, data_file):
     commands = {"verify": 1, "run": 2}
     # the way this is handled, the strings for the hyperparameters are
     # converted to numbers, and used in variables like command and activation
     command = commands[cmd]
-    load_config(cfg_file)
-
-
+    model=load_config(cfg_file)
+    input,output=load_data(data_file)
 main(sys.argv[1], sys.argv[2], sys.argv[3])

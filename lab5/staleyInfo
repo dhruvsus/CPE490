@@ -1,0 +1,4 @@
+# you'll need to add a column to weight matrices to emulate the bias, where the output for the simulated neuron is 1, and the weight is the bias.
+# expected=deriv*eps
+# actual=tweak_err-base_err
+abs((actual/expected)*100/expected)
