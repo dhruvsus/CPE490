@@ -184,6 +184,6 @@ def main(cmd, cfg_file, data_file):
     command = commands[cmd]
     model = load_config(cfg_file)
     input, output = load_data(data_file)
-    model.predict(input)
+    print(globals()[model.layers[1].act]([1,2,3,4,-5]))
 
 main(sys.argv[1], sys.argv[2], sys.argv[3])
