@@ -3,7 +3,7 @@ import numpy.random as rnd
 import json, sys
 
 
-"""class Layer:
+class Layer:
     # dim  -- number of neurons in the layer
     # prev -- prior layer, or None if input layer.  If None, all following
     #  params are ignored.
@@ -18,28 +18,30 @@ import json, sys
     # zs -- z values for last sample
     # z_derivs -- derivatives of E/Z for last sample
     # batch_derivs -- cumulative sum of in_derivs across current batch
-    def __init__(self, dim, prev, act, act_prime, weights=None):
-        self.dim=dim
-        self.prev=prev
-        self.act=act
-        self.act_prime=act_prime
-        self.weights=weights
+    def __init__(self, dim, prev, act=None, act_prime=None, weights=None):
+        self.dim = dim
+        self.prev = prev
+        self.act = act
+        self.act_prime = act_prime
+        self.weights = weights
+        self.outputs = None
+
     def get_dim(self):
         return self.dim
-    def get_deriv(self, src, trg):
+
+    #    def get_deriv(self, src, trg):
     # Compute self.outputs, using vals if given, else using outputs from
     # previous layer and passing through our in_weights and activation.
-    def propagate(self, vals = None):
+    #    def propagate(self, vals = None):
 
-    
-    # Compute self.in_derivs, assuming 
+    # Compute self.in_derivs, assuming
     # 1. We have a prev layer (else in_derivs is None)
     # 2. Either
     #    a. There is a next layer with correct z_derivs, OR
-    #    b. The provided err_prime function accepts np arrays 
-    #       of outputs and of labels, and returns an np array 
+    #    b. The provided err_prime function accepts np arrays
+    #       of outputs and of labels, and returns an np array
     #       of dE/da for each output
-    def backpropagate(self, err_prime=None, labels=None):
+    """def backpropagate(self, err_prime=None, labels=None):
 
     # Adjust all weights by avg gradient accumulated for current batch * -|rate|
     def apply_batch(self, batch_size, rate):
@@ -51,17 +53,40 @@ import json, sys
     # to trg node in this layer.
     def tweak_weight(self, src, trg, delta):
 
-    # Return string description of self for debugging
+    # Return string description of self for debugging"""
+
     def __repr__(self):
-"""     
+        return (
+            "dim: "
+            + str(self.dim)
+            + " act: "
+            + str(self.act)
+            + " act_prime: "
+            + str(self.act_prime)
+        )
+
+
 class Network:
     # arch -- list of (dim, act) pairs
     # err -- error function: "cross_entropy" or "mse"
     # wgts -- list of one 2-d np.array per layer in arch
     def __init__(self, arch, err, wgts=None):
+        self.layers = []
         self.arch = arch
         self.err = err
         self.wgts = wgts
+        self.layers.append(Layer(dim=arch.pop(0)[0], prev=None))
+        for layer_arch in arch:
+            self.layers.append(
+                Layer(
+                    layer_arch[0],
+                    prev=self.layers[0],
+                    act=layer_arch[1],
+                    act_prime=layer_arch[1] + "_prime",
+                )
+            )
+
+
 # Forward propagate, passing inputs to first layer, and returning outputs
 # of final layer
 
@@ -88,32 +113,52 @@ class Network:
 # Forward propagate for each input, record error, and backpropagate.  At batch
 # end, report average error for the batch, and do a derivative update.
 #    def run_batch(self, data, rate):
-# TODO: change range for wgts 
+def relu(vals):
+    """Return the numpy array from relu'ing the input vals.
+    Keyword arguments:
+    vals -- the input numpy array
+    """
+    return np.maximum(vals, 0, x)
+
+
+# def relu_prime(vals):
+
+
 def load_config(cfg_file):
     errors = {"cross_entropy": 1, "mse": 2}
     activations = {"relu": 1, "softmax": 2}
     with open(cfg_file, "r") as config:
         config_json = json.load(config)
-        num_layers=len(config_json["arch"])
+        num_layers = len(config_json["arch"])
         model = Network(
             arch=config_json["arch"],
             err=errors[config_json["err"]],
-            wgts=[np.vstack(config_json.get("wgts")[i]) for i in range(num_layers-1)],
+            wgts=[
+                np.vstack(config_json.get("wgts")[i])
+                for i in range(num_layers - 1)
+            ],
         )
+        print(model.layers)
     return model
+
+
 def load_data(data_file):
     with open(data_file, "r") as data:
-        data_json=json.loads(data.read())
-        input=[data_json[i][0] for i in range(len(data_json))]
-        input=np.vstack(input)
-        output=[data_json[i][1] for i in range(len(data_json))]
-        output=np.vstack(output)
-        return input,output
+        data_json = json.loads(data.read())
+        input = [data_json[i][0] for i in range(len(data_json))]
+        input = np.vstack(input)
+        output = [data_json[i][1] for i in range(len(data_json))]
+        output = np.vstack(output)
+        return input, output
+
+
 def main(cmd, cfg_file, data_file):
     commands = {"verify": 1, "run": 2}
     # the way this is handled, the strings for the hyperparameters are
     # converted to numbers, and used in variables like command and activation
     command = commands[cmd]
-    model=load_config(cfg_file)
-    input,output=load_data(data_file)
+    model = load_config(cfg_file)
+    input, output = load_data(data_file)
+
+
 main(sys.argv[1], sys.argv[2], sys.argv[3])
