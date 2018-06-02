@@ -116,12 +116,22 @@ class Network:
 def relu(vals):
     """Return the numpy array from relu'ing the input vals.
     Keyword arguments:
-    vals -- the input numpy array
+    vals -- the input numpy array, of dimensions: batch_size, n(L-1)
     """
-    return np.maximum(vals, 0, x)
+    return np.maximum(vals, 0)
 
 
-# def relu_prime(vals):
+def softmax(vals):
+    """Return the numpy array from softmaxing the input values
+    Keyword arguments:
+    vals -- the input numpy array, of dimensions: batch_size, n(L-1)
+    """
+    # what it's trying to achieve: exponential for row vals/exponential sum across rows
+    softmax_denominator = np.exp(vals).sum(axis=1)
+    softmax_numerator = np.exp(vals)
+    print(softmax_numerator)
+    print(softmax_denominator)
+    return softmax_numerator / softmax_denominator[:, None]
 
 
 def load_config(cfg_file):
@@ -159,6 +169,7 @@ def main(cmd, cfg_file, data_file):
     command = commands[cmd]
     model = load_config(cfg_file)
     input, output = load_data(data_file)
+    print(softmax([[1, 2, 3], [4, 5, 6]]))
 
 
 main(sys.argv[1], sys.argv[2], sys.argv[3])
