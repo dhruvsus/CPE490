@@ -23,7 +23,10 @@ class Layer:
         self.prev = prev
         self.act = act
         self.act_prime = act_prime
-        self.weights = weights
+        if weights is None:
+            self.weights=np.random.uniform(low=-0.5,high=0.5,size=(dim,1))
+        else:
+            self.weights = weights
         self.outputs = None
 
     def get_dim(self):
@@ -32,8 +35,15 @@ class Layer:
     #    def get_deriv(self, src, trg):
     # Compute self.outputs, using vals if given, else using outputs from
     # previous layer and passing through our in_weights and activation.
-    #    def propagate(self, vals = None):
-
+    def propagate(self, vals = None):
+        if vals is not None:
+            # L0
+            self.outputs=self.act(np.dot(self.weights,vals))
+            return self.outputs
+        else:
+            # not L0
+            self.outputs-self.act(np.dot(self.weights,self.prev.outputs))
+            return self.outputs
     # Compute self.in_derivs, assuming
     # 1. We have a prev layer (else in_derivs is None)
     # 2. Either
@@ -89,11 +99,16 @@ class Network:
 
 # Forward propagate, passing inputs to first layer, and returning outputs
 # of final layer
-
-
-#    def predict(self, inputs):
-
-
+    def predict(self, inputs):
+        # run propogate for layer 1, which doesn't have a prev
+        output=None
+        for layer in self.layers:
+            if layer.prev is None:
+                #layer is input layer ie layer 0
+                output=layer.propagate(inputs)
+            else:
+                output=layer.propagate()
+        return output
 # Assuming forward propagation is done, return current error, assuming
 # expected final layer output is |labels|
 #    def get_err(self, labels):
@@ -169,7 +184,6 @@ def main(cmd, cfg_file, data_file):
     command = commands[cmd]
     model = load_config(cfg_file)
     input, output = load_data(data_file)
-    print(softmax([[1, 2, 3], [4, 5, 6]]))
-
+    model.predict(input)
 
 main(sys.argv[1], sys.argv[2], sys.argv[3])
