@@ -23,8 +23,8 @@ class Layer:
         self.prev = prev
         self.act = act
         self.act_prime = act_prime
-        if weights is None:
-            self.weights=np.random.uniform(low=-0.5,high=0.5,size=(dim,1))
+        if weights == None:
+            self.weights = np.random.uniform(low=-0.5, high=0.5, size=(dim, 1))
         else:
             self.weights = weights
         self.outputs = None
@@ -35,15 +35,15 @@ class Layer:
     #    def get_deriv(self, src, trg):
     # Compute self.outputs, using vals if given, else using outputs from
     # previous layer and passing through our in_weights and activation.
-    def propagate(self, vals = None):
-        if vals is not None:
-            # L0
-            self.outputs=self.act(np.dot(self.weights,vals))
-            return self.outputs
-        else:
-            # not L0
-            self.outputs-self.act(np.dot(self.weights,self.prev.outputs))
-            return self.outputs
+    def propagate(self, vals=None):
+        # not L0
+        ones_to_append = np.ones((self.prev.outputs.shape[0], 1))
+        input = np.concatenate((self.prev.outputs, ones_to_append), axis=1)
+        print(input)
+        print(self.weights)
+        self.outputs = globals()[self.act](np.dot(self.weights, input))
+        return self.outputs
+
     # Compute self.in_derivs, assuming
     # 1. We have a prev layer (else in_derivs is None)
     # 2. Either
@@ -93,22 +93,26 @@ class Network:
                     prev=self.layers[0],
                     act=layer_arch[1],
                     act_prime=layer_arch[1] + "_prime",
+                    weights=wgts,
                 )
             )
 
-
-# Forward propagate, passing inputs to first layer, and returning outputs
-# of final layer
+    # Forward propagate, passing inputs to first layer, and returning outputs
+    # of final layer
     def predict(self, inputs):
         # run propogate for layer 1, which doesn't have a prev
-        output=None
+        output = None
         for layer in self.layers:
             if layer.prev is None:
-                #layer is input layer ie layer 0
-                output=layer.propagate(inputs)
+                # layer is input layer ie layer 0
+                output, layer.outputs = inputs, inputs
+                # print(output)
             else:
-                output=layer.propagate()
+                output = layer.propagate()
+                # print(output)
         return output
+
+
 # Assuming forward propagation is done, return current error, assuming
 # expected final layer output is |labels|
 #    def get_err(self, labels):
@@ -144,8 +148,6 @@ def softmax(vals):
     # what it's trying to achieve: exponential for row vals/exponential sum across rows
     softmax_denominator = np.exp(vals).sum(axis=1)
     softmax_numerator = np.exp(vals)
-    print(softmax_numerator)
-    print(softmax_denominator)
     return softmax_numerator / softmax_denominator[:, None]
 
 
@@ -163,7 +165,7 @@ def load_config(cfg_file):
                 for i in range(num_layers - 1)
             ],
         )
-        print(model.layers)
+    # print(model.layers)
     return model
 
 
@@ -184,6 +186,9 @@ def main(cmd, cfg_file, data_file):
     command = commands[cmd]
     model = load_config(cfg_file)
     input, output = load_data(data_file)
-    print(globals()[model.layers[1].act]([1,2,3,4,-5]))
+    model.predict(input)
+    # print(model.predict(input))
+    # print(globals()[model.layers[1].act]([1,2,3,4,-5]))
+
 
 main(sys.argv[1], sys.argv[2], sys.argv[3])
