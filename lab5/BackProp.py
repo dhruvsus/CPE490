@@ -29,7 +29,7 @@ class Layer:
         else:
             self.weights = (
                 np.random.uniform(
-                    low=-0.5, high=0.5, size=(dim, self.prev.dim)
+                    low=-0.5, high=0.5, size=(dim, self.prev.dim + 1)
                 )
                 if weights is None
                 else weights
@@ -37,7 +37,7 @@ class Layer:
         # this includes the weights field in the input layer
 
     def get_dim(self):
-        pass
+        return self.dim
 
     def get_deriv(self, src, trg):
         pass
@@ -86,7 +86,13 @@ class Network:
         layers = []
         self.arch = arch
         self.err = err
-        self.wgts = [None] + wgts
+        # handling no weights being provided
+        if wgts == None:
+            self.wgts = [None]
+        else:
+            self.wgts = [None] + wgts
+        print(len(self.wgts))
+        print(self.wgts)
         # now to create the random weights if they don't exist.
         for layer_no, layer_arch in enumerate(arch):
             # layer no 0: input
@@ -97,7 +103,7 @@ class Network:
                     act=layer_arch[1],
                     act_prime=layer_arch[1] + "_prime",
                     weights=None
-                    if len(self.wgts) < layer_no - 1
+                    if len(self.wgts) < layer_no + 1
                     else self.wgts[layer_no],
                 )
             )
@@ -137,7 +143,6 @@ def load_config(cfg_file):
         err = config_json["err"]
         wgts = config_json.get("wgts")
         num_layers = len(config_json["arch"])
-        # print(config_json)
         model = Network(arch=arch, err=err, wgts=wgts)
         print(model.layers)
     return model
