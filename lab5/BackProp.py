@@ -11,7 +11,7 @@ class Layer:
     # act_prime -- derivative function: accept np.arrays of z's and of a's,
     #  return derivative of activation wrt z's, 1-D or 2-D as appropriate
     # weights -- initial weights. Set to small random if "None".
-    #
+    # outputs -- output for layer.
     # All the following member data are None for input layer
     # in_weights -- matrix of input weights
     # in_derivs -- derivatives of E/weight for last sample
@@ -19,7 +19,22 @@ class Layer:
     # z_derivs -- derivatives of E/Z for last sample
     # batch_derivs -- cumulative sum of in_derivs across current batch
     def __init__(self, dim, prev, act, act_prime, weights=None):
-        pass
+        self.dim = dim
+        self.prev = prev
+        self.act = act
+        self.act_prime = act_prime
+        if self.prev is None:
+            # input layer
+            self.weights = weights
+        else:
+            self.weights = (
+                np.random.uniform(
+                    low=-0.5, high=0.5, size=(dim, self.prev.dim)
+                )
+                if weights is None
+                else weights
+            )
+        # this includes the weights field in the input layer
 
     def get_dim(self):
         pass
@@ -57,15 +72,36 @@ class Layer:
 
     # Return string description of self for debugging
     def __repr__(self):
-        pass
+        return "dim: {!s}\nact: {}\nact_prime: {}\nweights: {!s}\n".format(
+            self.dim, self.act, self.act_prime, self.weights
+        )
 
 
 class Network:
     # arch -- list of (dim, act) pairs
     # err -- error function: "cross_entropy" or "mse"
     # wgts -- list of one 2-d np.array per layer in arch
+    # layers -- list of Layer objects
     def __init__(self, arch, err, wgts=None):
-        pass
+        layers = []
+        self.arch = arch
+        self.err = err
+        self.wgts = [None] + wgts
+        # now to create the random weights if they don't exist.
+        for layer_no, layer_arch in enumerate(arch):
+            # layer no 0: input
+            layers.append(
+                Layer(
+                    dim=layer_arch[0],
+                    prev=None if layer_no == 0 else layers[-1],
+                    act=layer_arch[1],
+                    act_prime=layer_arch[1] + "_prime",
+                    weights=None
+                    if len(self.wgts) < layer_no - 1
+                    else self.wgts[layer_no],
+                )
+            )
+        self.layers = layers
 
     # Forward propagate, passing inputs to first layer, and returning outputs
     # of final layer
@@ -95,19 +131,15 @@ class Network:
 
 
 def load_config(cfg_file):
-    errors = {"cross_entropy": 1, "mse": 2}
-    activations = {"relu": 1, "softmax": 2}
     with open(cfg_file, "r") as config:
         config_json = json.load(config)
+        arch = config_json["arch"]
+        err = config_json["err"]
+        wgts = config_json.get("wgts")
         num_layers = len(config_json["arch"])
-        model = Network(
-            arch=config_json["arch"],
-            err=errors[config_json["err"]],
-            wgts=[
-                np.vstack(config_json.get("wgts")[i])
-                for i in range(num_layers - 1)
-            ],
-        )
+        # print(config_json)
+        model = Network(arch=arch, err=err, wgts=wgts)
+        print(model.layers)
     return model
 
 
