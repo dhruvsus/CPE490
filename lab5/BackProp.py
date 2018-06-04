@@ -131,7 +131,10 @@ class Network:
     # Forward propagate for each input, record error, and backpropagate.  At batch
     # end, report average error for the batch, and do a derivative update.
     def run_batch(self, data, rate):
-        self.predict(inputs=data["inputs"])
+        inputs = data["inputs"]
+        outputs = data["outputs"]
+        for input_no, input in enumerate(inputs):
+            pass
 
 
 def load_config(cfg_file):
@@ -140,7 +143,6 @@ def load_config(cfg_file):
         arch = config_json["arch"]
         err = config_json["err"]
         wgts = config_json.get("wgts")
-        num_layers = len(config_json["arch"])
         model = Network(arch=arch, err=err, wgts=wgts)
     return model
 
