@@ -91,8 +91,6 @@ class Network:
             self.wgts = [None]
         else:
             self.wgts = [None] + wgts
-        print(len(self.wgts))
-        print(self.wgts)
         # now to create the random weights if they don't exist.
         for layer_no, layer_arch in enumerate(arch):
             # layer no 0: input
@@ -133,7 +131,7 @@ class Network:
     # Forward propagate for each input, record error, and backpropagate.  At batch
     # end, report average error for the batch, and do a derivative update.
     def run_batch(self, data, rate):
-        pass
+        self.predict(inputs=data["inputs"])
 
 
 def load_config(cfg_file):
@@ -144,7 +142,6 @@ def load_config(cfg_file):
         wgts = config_json.get("wgts")
         num_layers = len(config_json["arch"])
         model = Network(arch=arch, err=err, wgts=wgts)
-        print(model.layers)
     return model
 
 
@@ -161,6 +158,8 @@ def load_data(data_file):
 def main(cmd, cfg_file, data_file):
     model = load_config(cfg_file)
     inputs, outputs = load_data(data_file)
+    data = {"inputs": inputs, "outputs": outputs}
+    model.run_batch(data=data, rate=0.01)
 
 
 main(sys.argv[1], sys.argv[2], sys.argv[3])
