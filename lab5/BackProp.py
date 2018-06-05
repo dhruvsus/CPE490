@@ -45,7 +45,14 @@ class Layer:
     # Compute self.outputs, using vals if given, else using outputs from
     # previous layer and passing through our in_weights and activation.
     def propagate(self, vals=None):
-        
+        if vals is not None:
+            # input layer
+            self.outputs=vals
+        else:
+            inputs=np.reshape(self.prev.outputs,newshape=(-1,1))
+            print(inputs.shape)
+            print(inputs)
+            #ones=np.ones(1,)
 
     # Compute self.in_derivs, assuming
     # 1. We have a prev layer (else in_derivs is None)
@@ -113,6 +120,7 @@ class Network:
         # for input layer
         for layer_no, layer in enumerate(self.layers):
             layer.propagate(vals=inputs) if layer_no==0 else layer.propagate()
+        return None 
         # now implement Layer.propagate
     # Assuming forward propagation is done, return current error, assuming
     # expected final layer output is |labels|
@@ -165,6 +173,5 @@ def main(cmd, cfg_file, data_file):
     inputs, outputs = load_data(data_file)
     data = {"inputs": inputs, "outputs": outputs}
     model.run_batch(data=data, rate=0.01)
-
 
 main(sys.argv[1], sys.argv[2], sys.argv[3])
