@@ -35,7 +35,7 @@ class Layer:
                 else weights
             )
         # this includes the weights field in the input layer
-
+        self.outputs=None
     def get_dim(self):
         return self.dim
 
@@ -45,7 +45,7 @@ class Layer:
     # Compute self.outputs, using vals if given, else using outputs from
     # previous layer and passing through our in_weights and activation.
     def propagate(self, vals=None):
-        pass
+        
 
     # Compute self.in_derivs, assuming
     # 1. We have a prev layer (else in_derivs is None)
@@ -110,8 +110,10 @@ class Network:
     # Forward propagate, passing inputs to first layer, and returning outputs
     # of final layer
     def predict(self, inputs):
-        pass
-
+        # for input layer
+        for layer_no, layer in enumerate(self.layers):
+            layer.propagate(vals=inputs) if layer_no==0 else layer.propagate()
+        # now implement Layer.propagate
     # Assuming forward propagation is done, return current error, assuming
     # expected final layer output is |labels|
     def get_err(self, labels):
@@ -134,7 +136,8 @@ class Network:
         inputs = data["inputs"]
         outputs = data["outputs"]
         for input_no, input in enumerate(inputs):
-            pass
+            output=self.predict(input)
+            print(output)
 
 
 def load_config(cfg_file):
