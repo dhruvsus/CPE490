@@ -30,8 +30,10 @@ class Layer:
             self.weights = (np.random.uniform(
                 low=-0.5, high=0.5, size=(dim, self.prev.dim + 1))
                             if weights is None else weights)
+        self.in_weights = self.weights
         # this includes the weights field in the input layer
         self.outputs = None
+        self.zs = None
 
     def get_dim(self):
         return self.dim
@@ -48,9 +50,9 @@ class Layer:
         else:
             inputs = np.reshape(self.prev.outputs, newshape=(-1, 1))
             inputs = np.append(inputs, 1)
-            weights = np.vstack(self.weights)
-            outputs = np.dot(self.weights, inputs)
-            # print(outputs)
+            weights = np.vstack(self.in_weights)
+            outputs = np.dot(self.in_weights, inputs)
+            self.zs = outputs
             outputs = globals()[self.act](outputs)
             # print(outputs)
             self.outputs = outputs
