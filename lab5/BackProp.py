@@ -50,9 +50,9 @@ class Layer:
             inputs = np.append(inputs, 1)
             weights = np.vstack(self.weights)
             outputs = np.dot(self.weights, inputs)
-            print(outputs)
+            # print(outputs)
             outputs = globals()[self.act](outputs)
-            print(outputs)
+            # print(outputs)
             self.outputs = outputs
 
     # Compute self.in_derivs, assuming
@@ -86,6 +86,10 @@ class Layer:
 
 def relu(inputs):
     return np.maximum(inputs, 0)
+
+
+def softmax(inputs):
+    return np.exp(inputs) / np.sum(np.exp(inputs))
 
 
 class Network:
