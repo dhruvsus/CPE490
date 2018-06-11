@@ -94,6 +94,10 @@ def softmax(inputs):
     return np.exp(inputs) / np.sum(np.exp(inputs))
 
 
+def cross_entropy(x, y):
+    pass
+
+
 class Network:
     # arch -- list of (dim, act) pairs
     # err -- error function: "cross_entropy" or "mse"
@@ -130,12 +134,13 @@ class Network:
             layer.propagate(
                 vals=inputs) if layer_no == 0 else layer.propagate()
         return self.layers[-1].outputs
-        # now implement Layer.propagate
 
     # Assuming forward propagation is done, return current error, assuming
     # expected final layer output is |labels|
     def get_err(self, labels):
-        pass
+        print("x = {}".format(self.layers[-1].outputs))
+        print("y = {}".format(labels))
+        return globals()[self.err](self.layers[-1].outputs, labels)
 
     # Assuming a predict was just done, update all in_derivs, and add to batch_derivs
     def backpropagate(self, labels):
@@ -154,8 +159,11 @@ class Network:
         inputs = data["inputs"]
         outputs = data["outputs"]
         for input_no, input in enumerate(inputs):
-            output = self.predict(input)
-            print(output)
+            output_obs = self.predict(input)
+            truth_value = outputs[input_no]
+            print(truth_value)
+            err = self.get_err(truth_value)
+            print(err)
 
 
 def load_config(cfg_file):
