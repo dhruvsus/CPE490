@@ -100,6 +100,10 @@ def cross_entropy(x, y):
         np.sum(y[y_0] * np.log(x[y_0])) - np.sum(y[y_0] * np.log(y[y_0])))
 
 
+def mse(x, y):
+    return np.sum(np.square(y - x)) / len(x)
+
+
 class Network:
     # arch -- list of (dim, act) pairs
     # err -- error function: "cross_entropy" or "mse"
@@ -140,8 +144,8 @@ class Network:
     # Assuming forward propagation is done, return current error, assuming
     # expected final layer output is |labels|
     def get_err(self, labels):
-        print("x = {}".format(self.layers[-1].outputs))
-        print("y = {}".format(labels))
+        # print("x = {}".format(self.layers[-1].outputs))
+        # print("y = {}".format(labels))
         return globals()[self.err](self.layers[-1].outputs, labels)
 
     # Assuming a predict was just done, update all in_derivs, and add to batch_derivs
@@ -163,7 +167,7 @@ class Network:
         for input_no, input in enumerate(inputs):
             output_obs = self.predict(input)
             truth_value = outputs[input_no]
-            print(truth_value)
+            # print(truth_value)
             err = self.get_err(truth_value)
             print(err)
 
