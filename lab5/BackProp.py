@@ -205,7 +205,19 @@ def main(cmd, cfg_file, data_file):
     #end testing area
     model = load_config(cfg_file)
     inputs, outputs = load_data(data_file)
-    data = {"inputs": inputs, "outputs": outputs}
+    no_samples = inputs.shape[0]
+    print(no_samples)
+    print(inputs.shape)
+    print(outputs.shape)
+    data_pointer = 0
+    while data_pointer + 32 < no_samples:
+        data = {
+            "inputs": inputs[data_pointer:data_pointer + 32],
+            "outputs": outputs[data_pointer:data_pointer + 32]
+        }
+        model.run_batch(data=data, rate=0.01)
+        data_pointer = data_pointer + 32
+    data = {"inputs": inputs[data_pointer:], "outputs": outputs[data_pointer:]}
     model.run_batch(data=data, rate=0.01)
 
 
