@@ -95,7 +95,9 @@ def softmax(inputs):
 
 
 def cross_entropy(x, y):
-    pass
+    y_0 = np.nonzero(y)
+    return -1 * (
+        np.sum(y[y_0] * np.log(x[y_0])) - np.sum(y[y_0] * np.log(y[y_0])))
 
 
 class Network:
