@@ -27,13 +27,9 @@ class Layer:
             # input layer
             self.weights = weights
         else:
-            self.weights = (
-                np.random.uniform(
-                    low=-0.5, high=0.5, size=(dim, self.prev.dim + 1)
-                )
-                if weights is None
-                else weights
-            )
+            self.weights = (np.random.uniform(
+                low=-0.5, high=0.5, size=(dim, self.prev.dim + 1))
+                            if weights is None else weights)
         # this includes the weights field in the input layer
         self.outputs = None
 
@@ -51,9 +47,10 @@ class Layer:
             self.outputs = vals
         else:
             inputs = np.reshape(self.prev.outputs, newshape=(-1, 1))
-            print(inputs.shape)
-            print(inputs)
-            # ones=np.ones(1,)
+            inputs = np.append(inputs, 1)
+            weights = np.vstack(self.weights)
+            outputs = np.dot(self.weights, inputs)
+            self.outputs = outputs
 
     # Compute self.in_derivs, assuming
     # 1. We have a prev layer (else in_derivs is None)
@@ -81,8 +78,7 @@ class Layer:
     # Return string description of self for debugging
     def __repr__(self):
         return "dim: {!s}\nact: {}\nact_prime: {}\nweights: {!s}\n".format(
-            self.dim, self.act, self.act_prime, self.weights
-        )
+            self.dim, self.act, self.act_prime, self.weights)
 
 
 class Network:
@@ -109,10 +105,8 @@ class Network:
                     act=layer_arch[1],
                     act_prime=layer_arch[1] + "_prime",
                     weights=None
-                    if len(self.wgts) < layer_no + 1
-                    else self.wgts[layer_no],
-                )
-            )
+                    if len(self.wgts) < layer_no + 1 else self.wgts[layer_no],
+                ))
         self.layers = layers
 
     # Forward propagate, passing inputs to first layer, and returning outputs
@@ -121,9 +115,8 @@ class Network:
         # for input layer
         for layer_no, layer in enumerate(self.layers):
             layer.propagate(
-                vals=inputs
-            ) if layer_no == 0 else layer.propagate()
-        return None
+                vals=inputs) if layer_no == 0 else layer.propagate()
+        return self.layers[-1].outputs
         # now implement Layer.propagate
 
     # Assuming forward propagation is done, return current error, assuming
@@ -159,6 +152,7 @@ def load_config(cfg_file):
         err = config_json["err"]
         wgts = config_json.get("wgts")
         model = Network(arch=arch, err=err, wgts=wgts)
+        # print(model.layers)
     return model
 
 
