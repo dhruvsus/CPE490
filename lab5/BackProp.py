@@ -164,12 +164,17 @@ class Network:
     def run_batch(self, data, rate):
         inputs = data["inputs"]
         outputs = data["outputs"]
+        err = 0
         for input_no, input in enumerate(inputs):
             output_obs = self.predict(input)
             truth_value = outputs[input_no]
+            sample_err = self.get_err(truth_value)
             # print(truth_value)
-            err = self.get_err(truth_value)
-            print(err)
+            print("{} vs {} for {:0.6f}".format(output_obs, truth_value,
+                                                sample_err))
+            err = err + self.get_err(truth_value)
+        err = err / len(inputs)
+        print(err)
 
 
 def load_config(cfg_file):
