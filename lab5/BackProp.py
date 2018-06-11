@@ -50,6 +50,9 @@ class Layer:
             inputs = np.append(inputs, 1)
             weights = np.vstack(self.weights)
             outputs = np.dot(self.weights, inputs)
+            print(outputs)
+            outputs = globals()[self.act](outputs)
+            print(outputs)
             self.outputs = outputs
 
     # Compute self.in_derivs, assuming
@@ -79,6 +82,10 @@ class Layer:
     def __repr__(self):
         return "dim: {!s}\nact: {}\nact_prime: {}\nweights: {!s}\n".format(
             self.dim, self.act, self.act_prime, self.weights)
+
+
+def relu(inputs):
+    return np.maximum(inputs, 0)
 
 
 class Network:
@@ -167,6 +174,10 @@ def load_data(data_file):
 
 
 def main(cmd, cfg_file, data_file):
+    #testing area
+    # print(relu(np.asarray([5,6,-1,2,4,-7])))
+    # relu works
+    #end testing area
     model = load_config(cfg_file)
     inputs, outputs = load_data(data_file)
     data = {"inputs": inputs, "outputs": outputs}
