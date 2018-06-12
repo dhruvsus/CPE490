@@ -170,8 +170,7 @@ class Network:
             truth_value = outputs[input_no]
             sample_err = self.get_err(truth_value)
             # print(truth_value)
-            print("{} vs {} for {:0.6f}".format(output_obs, truth_value,
-                                                sample_err))
+            # print("{} vs {} for {:0.6f}".format(output_obs, truth_value,sample_err))
             err = err + self.get_err(truth_value)
         err = err / len(inputs)
         print(err)
